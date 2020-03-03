@@ -1,39 +1,14 @@
-body {
-  margin: 10px 10px 10px 10px;
-}
-
-.modal-body h6 {
-  text-align: center;
-  color: red;
-}
-
-/* Generated via www.cssmenubuilder.com */
-
 .menu {
-  margin: 0 auto;
-  padding: 0;
-  height: 60px;
   width: 100%;
-  display: block;
+  height: 60px;
+  left: 0px;
+  top: 10px;
+
+  background: #ffffff;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.25);
 }
-.menu li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: inline;
-}
-.menu li span {
-  float: right;
-  padding-left: 15px;
-  display: block;
-  text-decoration: none;
-  font: 18px Verdana, Arial, Helvetica, sans-serif;
-  cursor: pointer;
-  line-height: 60px;
-  display: block;
-  padding-right: 15px;
-}
-.menu li .brand {
+
+.brand {
   float: left;
   padding-left: 15px;
   display: block;
@@ -41,58 +16,227 @@ body {
   font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   cursor: pointer;
   line-height: 60px;
-  display: block;
   padding-right: 15px;
 }
 
+.btn-register {
+  position: absolute;
+  width: 112px;
+  height: 41px;
+  left: 1080px;
+  top: 10px;
+
+  border-radius: 5px;
+}
+.btn-login {
+  position: absolute;
+  width: 112px;
+  height: 41px;
+  left: 1200px;
+  top: 10px;
+
+  background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
+  border-radius: 5px;
+}
+
+.btn-login label {
+  width: 63px;
+  height: 33px;
+  left: 1312px;
+  top: 14px;
+
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 33px;
+  color: #ffffff;
+}
+
+.btn-register label {
+  width: 72px;
+  height: 33px;
+  left: 1170px;
+  top: 14px;
+
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 33px;
+}
 /* Banner */
 
-.banner .row {
-  margin: 0 auto;
-  padding: 0;
-  height: 250px;
+.banner {
   width: 100%;
-  display: flex;
-  background-color: gray;
-  align-items: center;
-  justify-content: center;
+  height: 300px;
+  left: 0px;
+  top: 60px;
+
+  background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
 }
 .banner img {
-  width: 350px;
-  height: 200px;
-  border-radius: 24px;
+  position: absolute;
+  width: 500px;
+  height: 192.31px;
+  left: 762px;
+  top: 120px;
+
+  border: 5px solid #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
 }
 
-.banner h1 {
-  font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-  color: aliceblue;
+.banner h4 {
+  font: 36px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  position: absolute;
+  width: 506px;
+  height: 33px;
+  left: 133px;
+  top: 114px;
+
+  font-style: normal;
+  font-weight: 900;
+  line-height: 49px;
+  color: #ffffff;
 }
 
-.banner p {
+.banner h5 {
   font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-  color: aliceblue;
+  position: absolute;
+  width: 369px;
+  height: 33px;
+  left: 140px;
+  top: 180px;
+
+  font-style: normal;
+  font-weight: normal;
+  line-height: 33px;
+  /* identical to box height */
+
+  color: #ffffff;
 }
 
-/* Left Tabs */
-.row-tab-container {
-  border: 1px solid black;
+.banner h6 {
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  position: absolute;
+  width: 327px;
+  height: 33px;
+  left: 140px;
+  top: 217px;
+
+  font-style: normal;
+  font-weight: normal;
+  line-height: 33px;
+  /* identical to box height */
+
+  color: #ffffff;
 }
 
-.row-tab-container h5 {
-  margin-top: 10px;
-  font: 20px OpenSans-SemiBold, Arial, Helvetica, Sans-serif;
+/* Menu */
+.buy-tix {
+  position: absolute;
+  width: 1124px;
+  height: 260px;
+  left: 139px;
+  top: 329px;
+
+  background: #ffffff;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 }
 
-.row-tab-container label {
-  font: 14px OpenSans-SemiBold, Arial, Helvetica, Sans-serif;
+.buy-tix button {
+  margin-top: 30px;
+  width: 120px;
+  height: 40px;
+
+  background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
+  border-radius: 5px;
 }
 
-.row-tab-container form div {
-  margin: 5px 0px 5px 0px;
-  font: 14px OpenSans-SemiBold, Arial, Helvetica, Sans-serif;
+.buy-tix .switch {
+  margin-top: 50px;
+  width: 40px;
+  height: 40px;
+
+  background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
+  border-radius: 50px;
 }
 
-.row-tab-container img {
-  width: 20px;
-  height: 20px;
+.buy-tix .switch img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+}
+.buy-tix button label {
+  font: 26px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #ffffff;
+}
+
+.buy-tix form {
+  font: 20px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.buy-tix h5 {
+  margin-top: 20px;
+  font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.buy-tix .nav-item {
+  margin: 15px 10px 10px 0px;
+  font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+}
+/* Ticket Table */
+.table-ticket {
+  position: absolute;
+  width: 1124px;
+  height: 50px;
+  left: 140px;
+  top: 620px;
+  text-align: center;
+}
+.table-ticket tr th {
+  border: 0px;
+  font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  align-items: center;
+}
+
+.table-ticket h5 {
+  font: 22px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  align-items: center;
+}
+
+.table-ticket h6 {
+  font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  align-items: center;
+  color: #b7b7b7;
+}
+
+/* Modal */
+.btn-modal {
+  align-items: center;
+  width: 100px;
+  height: 40px;
+
+  background: linear-gradient(180deg, #615fce 0%, #65509e 100%);
+  border-radius: 12px;
+}
+
+.modal-content form {
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  align-items: center;
+  color: #b7b7b7;
 }

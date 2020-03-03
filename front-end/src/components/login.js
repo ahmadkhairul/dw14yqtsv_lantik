@@ -10,7 +10,7 @@ const App = ({ login, postLogin }) => {
   const [value, setValue] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
-      email: "",
+      username: "",
       password: ""
     }
   );
@@ -21,18 +21,18 @@ const App = ({ login, postLogin }) => {
     setValue({ [name]: newValue });
   };
 
-  const { email, password } = value;
+  const { username, password } = value;
 
   function handleSubmit(event) {
     event.preventDefault();
-    postLogin({ email, password });
+    postLogin({ username, password });
   }
 
   return (
     <Fragment>
-      <Button variant="outline-primary" onClick={() => setLgShow(true)}>
-        Login
-      </Button>
+      <button className="btn-login" onClick={() => setLgShow(true)}>
+        <label>Login</label>
+      </button>
       <Modal
         size="sm"
         show={lgShow}
@@ -41,23 +41,23 @@ const App = ({ login, postLogin }) => {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            <span>Login</span>
+            <span>LOGIN</span>
           </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          {error === true ? <h6>Email or Password Wrong</h6> : <></>}
+          {error === true ? <h6>Username or Password Wrong</h6> : <></>}
           {loading === true ? <h6>Now Loading</h6> : <></>}
           {data.token != null ? <>{<Redirect to="/profile" />}</> : <></>}
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Control
-                type="email"
+                type="text"
                 onChange={handleChange}
-                name="email"
-                value={email}
+                name="username"
+                value={username}
                 autoComplete="off"
-                placeholder="youremail@mail.com"
+                placeholder="Username"
               />
             </Form.Group>
             <Form.Group>
@@ -70,7 +70,9 @@ const App = ({ login, postLogin }) => {
                 placeholder="Password"
               />
             </Form.Group>
-            <Button type="submit">Login</Button>
+            <Button className="btn-modal" type="submit">
+              Login
+            </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>

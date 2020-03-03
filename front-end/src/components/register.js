@@ -33,9 +33,9 @@ const App = ({ register, postRegister }) => {
 
   return (
     <Fragment>
-      <Button variant="outline-secondary" onClick={() => setRgShow(true)}>
-        Register
-      </Button>
+      <button className="btn-register" onClick={() => setRgShow(true)}>
+        <label>Daftar</label>
+      </button>
       <Modal
         size="sm"
         show={rgShow}
@@ -44,7 +44,7 @@ const App = ({ register, postRegister }) => {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            <span>Register</span>
+            <span>REGISTER</span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -106,7 +106,9 @@ const App = ({ register, postRegister }) => {
             <Form.Group>
               <input type="file" name="photo" />
             </Form.Group>
-            <Button type="submit">Register</Button>
+            <Button className="btn-modal" type="submit">
+              Register
+            </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>

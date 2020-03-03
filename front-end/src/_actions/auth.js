@@ -2,12 +2,12 @@ import { AUTH_LOGIN, AUTH_REGISTER } from "../config/constants";
 import { API } from "../config/api";
 
 export const postLogin = value => {
-  const { email, password } = value;
+  const { username, password } = value;
   return {
     type: AUTH_LOGIN,
     payload: async user => {
       const res = await API.post("/login", {
-        email,
+        username,
         password
       });
       const { data } = res.data;

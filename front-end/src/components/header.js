@@ -4,21 +4,15 @@ import Login from "../components/login";
 
 function App() {
   return (
-    <ul className="menu">
-      <li>
-        <div className="brand">Land Tick</div>
-      </li>
-      <li>
-        <span>
-          <Register />
-        </span>
-      </li>
-      <li>
-        <span>
-          <Login />
-        </span>
-      </li>
-    </ul>
+    <div className="menu">
+      <label className="brand">Land Tick</label>
+      <span>
+        <Register />
+      </span>
+      <span>
+        <Login />
+      </span>
+    </div>
   );
 }
 
