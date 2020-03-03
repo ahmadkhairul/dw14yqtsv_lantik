@@ -10,9 +10,11 @@ const App = ({ register, postRegister }) => {
   const [value, setValue] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
+      firstname: "",
       username: "",
       password: "",
       email: "",
+      gender: "",
       address: "",
       phone: ""
     }
@@ -24,11 +26,27 @@ const App = ({ register, postRegister }) => {
     setValue({ [name]: newValue });
   };
 
-  const { username, email, password, address, phone } = value;
+  const {
+    firstname,
+    username,
+    email,
+    password,
+    gender,
+    address,
+    phone
+  } = value;
 
   function handleSubmit(event) {
     event.preventDefault();
-    postRegister({ username, email, password, address, phone });
+    postRegister({
+      firstname,
+      username,
+      email,
+      password,
+      gender,
+      address,
+      phone
+    });
   }
 
   return (
@@ -56,10 +74,20 @@ const App = ({ register, postRegister }) => {
               <Form.Control
                 type="text"
                 onChange={handleChange}
+                name="firstname"
+                value={firstname}
+                autoComplete="off"
+                placeholder="Your Name"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Control
+                type="text"
+                onChange={handleChange}
                 name="username"
                 value={username}
                 autoComplete="off"
-                placeholder="Your Name"
+                placeholder="Your Username"
               />
             </Form.Group>
             <Form.Group>
@@ -84,6 +112,16 @@ const App = ({ register, postRegister }) => {
             </Form.Group>
             <Form.Group>
               <Form.Control
+                type="text"
+                onChange={handleChange}
+                name="gender"
+                value={gender}
+                autoComplete="off"
+                placeholder="Gender"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Control
                 type="number"
                 onChange={handleChange}
                 name="phone"
@@ -102,9 +140,6 @@ const App = ({ register, postRegister }) => {
                 placeholder="Address"
                 rows="3"
               />
-            </Form.Group>
-            <Form.Group>
-              <input type="file" name="photo" />
             </Form.Group>
             <Button className="btn-modal" type="submit">
               Register

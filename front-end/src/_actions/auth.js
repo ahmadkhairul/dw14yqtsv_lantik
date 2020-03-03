@@ -20,14 +20,24 @@ export const postLogin = value => {
 };
 
 export const postRegister = value => {
-  const { username, email, password, address, phone } = value;
+  const {
+    firstname,
+    username,
+    email,
+    password,
+    gender,
+    address,
+    phone
+  } = value;
   return {
     type: AUTH_REGISTER,
     payload: async () => {
       const res = await API.post("/register", {
+        name: firstname,
         username,
         email,
         password,
+        gender,
         address,
         phone
       });

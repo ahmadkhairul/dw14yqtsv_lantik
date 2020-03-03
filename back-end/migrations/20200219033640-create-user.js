@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       username: {
         allowNull: false,
         type: Sequelize.STRING
@@ -20,13 +24,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      gender: {
+        allowNull: false,
+        type: Sequelize.ENUM,
+        values: ["Male", "Female"],
+        defaultValue: "Male"
+      },
       phone: {
         type: Sequelize.STRING
       },
       address: {
-        type: Sequelize.STRING
-      },
-      photo: {
         type: Sequelize.STRING
       },
       level: {
