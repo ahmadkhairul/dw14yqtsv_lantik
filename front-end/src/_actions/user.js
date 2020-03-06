@@ -13,7 +13,6 @@ export const getUser = () => {
       setToken();
       const res = await API.get("/auth");
       const { data } = res.data;
-      console.log(data);
       return data;
     }
   };

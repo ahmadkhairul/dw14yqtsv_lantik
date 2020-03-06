@@ -1,12 +1,11 @@
 import React, { Fragment, useState, useReducer } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { postRegister } from "../_actions/auth";
 
 const App = ({ register, postRegister }) => {
   const [rgShow, setRgShow] = useState(false);
-  const { data, loading, error } = register;
+  const { loading, error } = register;
   const [value, setValue] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -68,7 +67,6 @@ const App = ({ register, postRegister }) => {
         <Modal.Body>
           {error === true ? <h6>Email Already Taken</h6> : <></>}
           {loading === true ? <h6>Now Loading</h6> : <></>}
-          {data.token != null ? <>{<Redirect to="/profile" />}</> : <></>}
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Control
@@ -112,13 +110,16 @@ const App = ({ register, postRegister }) => {
             </Form.Group>
             <Form.Group>
               <Form.Control
-                type="text"
+                as="select"
                 onChange={handleChange}
                 name="gender"
                 value={gender}
                 autoComplete="off"
                 placeholder="Gender"
-              />
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </Form.Control>
             </Form.Group>
             <Form.Group>
               <Form.Control

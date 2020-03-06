@@ -20,10 +20,7 @@ module.exports = {
       },
       dateStart: {
         allowNull: false,
-        type: Sequelize.DATEONLY,
-        get: function() {
-          return moment.utc(this.getDataValue("regDate")).format("DD-MM-YYYY");
-        }
+        type: Sequelize.DATE
       },
       startStation: {
         allowNull: false,
@@ -31,10 +28,7 @@ module.exports = {
       },
       startTime: {
         allowNull: false,
-        type: Sequelize.TIME,
-        get: function() {
-          return moment.utc(this.getDataValue("regDate")).format("HH-MM");
-        }
+        type: Sequelize.DATE
       },
       destinationStation: {
         allowNull: false,
@@ -42,10 +36,7 @@ module.exports = {
       },
       arrivalTime: {
         allowNull: false,
-        type: Sequelize.TIME,
-        get: function() {
-          return moment.utc(this.getDataValue("regDate")).format("HH-MM");
-        }
+        type: Sequelize.DATE
       },
       price: {
         allowNull: false,

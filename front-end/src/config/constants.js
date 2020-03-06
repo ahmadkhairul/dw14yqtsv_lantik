@@ -10,3 +10,4 @@ export const DELETE_USER = "DELETE_USER";
 
 //TICKET
 export const GET_TICKET = "GET_TICKET";
+export const SEARCH_TICKET = "SEARCH_TICKET";

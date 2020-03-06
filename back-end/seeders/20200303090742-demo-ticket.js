@@ -13,7 +13,7 @@ module.exports = {
           startTime: new Date(),
           destinationStation: "Stasiun Surabaya Pasarturi",
           arrivalTime: new Date(),
-          price: 10000,
+          price: 340000,
           qty: 3,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -26,7 +26,7 @@ module.exports = {
           startTime: new Date(),
           destinationStation: "Stasiun Surabaya Pasarturi",
           arrivalTime: new Date(),
-          price: 10000,
+          price: 340000,
           qty: 3,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -39,7 +39,7 @@ module.exports = {
           startTime: new Date(),
           destinationStation: "Stasiun Surabaya Pasarturi",
           arrivalTime: new Date(),
-          price: 10000,
+          price: 440000,
           qty: 3,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -52,7 +52,7 @@ module.exports = {
           startTime: new Date(),
           destinationStation: "Stasiun Surabaya Pasarturi",
           arrivalTime: new Date(),
-          price: 10000,
+          price: 550000,
           qty: 3,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -65,7 +65,7 @@ module.exports = {
           startTime: new Date(),
           destinationStation: "Stasiun Surabaya Pasarturi",
           arrivalTime: new Date(),
-          price: 10000,
+          price: 550000,
           qty: 3,
           createdAt: new Date(),
           updatedAt: new Date()

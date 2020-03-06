@@ -1,6 +1,8 @@
 import React from "react";
 import Index from "./app/index";
-import Profile from "./app/profile";
+import MyTicket from "./app/myTicket";
+import MyInvoice from "./app/myInvoice";
+import TransactionList from "./app/transactionList";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
@@ -9,8 +11,14 @@ const App = () => {
     <Router>
       <div>
         <Switch>
-          <Route path="/profile">
-            <Profile />
+          <Route path="/myinvoice">
+            <MyInvoice />
+          </Route>
+          <Route path="/myticket">
+            <MyTicket />
+          </Route>
+          <Route path="/transactionlist">
+            <TransactionList />
           </Route>
           <Route path="/">
             <Index />

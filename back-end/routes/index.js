@@ -17,5 +17,6 @@ router.put("/user/:id", auth, UserController.update);
 router.delete("/user/:id", auth, UserController.destroy);
 
 router.get("/tickets", TicketController.index);
+router.get("/ticketSearch", TicketController.search);
 
 module.exports = router;

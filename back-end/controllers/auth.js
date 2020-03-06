@@ -48,13 +48,11 @@ exports.register = async (req, res) => {
 
       if (user) {
         const token = jwt.sign({ user_id: user.id }, process.env.SECRET_KEY);
-        res
-          .status(200)
-          .send({
-            status: true,
-            message: "success",
-            data: { username, token }
-          });
+        res.status(200).send({
+          status: true,
+          message: "success",
+          data: { username, token }
+        });
       } else {
         res.status(401).send({ status: false, data: {} });
       }
@@ -70,7 +68,7 @@ exports.auth = async (req, res) => {
     const data = await User.findOne({
       where: { id },
       attributes: {
-        exclude: ["id", "password", "level", "createdAt", "updatedAt"]
+        exclude: ["id", "password", "createdAt", "updatedAt"]
       }
     });
     if (data) {

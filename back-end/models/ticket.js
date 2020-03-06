@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       classType: DataTypes.ENUM(["Eksekutif", "Bisnis", "Ekonomi", "Premium"]),
-      dateStart: DataTypes.DATEONLY,
+      dateStart: DataTypes.DATE,
       startStation: DataTypes.STRING,
-      startTime: DataTypes.TIME,
+      startTime: DataTypes.DATE,
       destinationStation: DataTypes.STRING,
-      arrivalTime: DataTypes.TIME,
+      arrivalTime: DataTypes.DATE,
       price: DataTypes.INTEGER,
       qty: DataTypes.INTEGER
     },

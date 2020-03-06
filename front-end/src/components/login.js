@@ -1,12 +1,11 @@
 import React, { Fragment, useState, useReducer } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { postLogin } from "../_actions/auth";
 
 const App = ({ login, postLogin }) => {
   const [lgShow, setLgShow] = useState(false);
-  const { data, loading, error } = login;
+  const { loading, error } = login;
   const [value, setValue] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -48,7 +47,6 @@ const App = ({ login, postLogin }) => {
         <Modal.Body>
           {error === true ? <h6>Username or Password Wrong</h6> : <></>}
           {loading === true ? <h6>Now Loading</h6> : <></>}
-          {data.token != null ? <>{<Redirect to="/profile" />}</> : <></>}
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Control

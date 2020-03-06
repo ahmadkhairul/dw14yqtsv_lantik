@@ -7,7 +7,7 @@ exports.show = async (req, res) => {
     const data = await User.findOne({
       where: { id },
       attributes: {
-        exclude: ["id", "password", "level", "createdAt", "updatedAt"]
+        exclude: ["id", "password", "createdAt", "updatedAt"]
       }
     });
     res.status(200).send({ status: true, message: "success", data });

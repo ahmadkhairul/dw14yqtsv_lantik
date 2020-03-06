@@ -8,7 +8,7 @@
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.25);
 }
 
-.brand {
+.menu label {
   float: left;
   padding-left: 15px;
   display: block;
@@ -17,6 +17,36 @@
   cursor: pointer;
   line-height: 60px;
   padding-right: 15px;
+}
+
+.menu .dropdown {
+  position: absolute;
+  left: 1150px;
+  top: 14px;
+
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  line-height: 28px;
+}
+
+.menu .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.menu .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.menu img {
+  position: relative;
+  width: 40px;
+  height: 40px;
 }
 
 .btn-register {
@@ -198,6 +228,7 @@
   top: 620px;
   text-align: center;
 }
+
 .table-ticket tr th {
   border: 0px;
   font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -239,4 +270,539 @@
   font-weight: 700;
   align-items: center;
   color: #b7b7b7;
+}
+
+/* MyTicket */
+
+.title {
+  position: relative;
+  left: 10px;
+  top: 50px;
+
+  font: 36px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #000000;
+}
+
+.myticket {
+  position: relative;
+  width: 1035px;
+  height: 385px;
+  left: 150px;
+  top: 70px;
+  margin-bottom: 50px;
+
+  border: 1px solid #b7b7b7;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.myticket h1 {
+  position: absolute;
+  font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  left: -1px;
+  top: -1px;
+  padding: 5px;
+
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: white;
+  background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
+}
+
+.myticket h2 {
+  position: absolute;
+  left: 790px;
+  top: 5px;
+
+  font: 32px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 900;
+
+  color: #000000;
+}
+
+.myticket h3 {
+  position: absolute;
+  text-align: left;
+  left: 790px;
+  top: 55px;
+
+  font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #878787;
+}
+
+.myticket h4 {
+  position: absolute;
+  left: 50px;
+  top: 100px;
+
+  font: 28px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 33px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.myticket h5 {
+  position: absolute;
+  left: 50px;
+  top: 145px;
+
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  line-height: 16px;
+
+  color: #000000;
+}
+
+.myticket .tbl-1 {
+  position: absolute;
+  left: 270px;
+  top: 100px;
+
+  line-height: 21px;
+  align-items: center;
+
+  color: #000000;
+}
+
+.myticket .tbl-1 th {
+  font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 70px 10px 10px;
+
+  color: #000000;
+}
+
+.myticket .tbl-1 td {
+  font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 70px 45px 10px;
+
+  color: #959595;
+}
+
+.myticket .tbl-2 {
+  position: absolute;
+  left: 270px;
+  top: 200px;
+
+  line-height: 21px;
+  align-items: center;
+
+  color: #000000;
+}
+
+.myticket .tbl-2 th {
+  font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 70px 10px 10px;
+
+  color: #000000;
+}
+
+.myticket .tbl-2 td {
+  font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 70px 45px 10px;
+
+  color: #959595;
+}
+
+/* Barcode */
+/* .myticket img {
+  position: relative;
+  left: 805px;
+  top: 250px;
+  width: 160px;
+  height: 160px;
+} */
+
+.myticket img {
+  position: absolute;
+  left: 245px;
+  top: 125px;
+  width: 20px;
+  height: 110px;
+}
+
+.myticket .tbl-3 {
+  position: absolute;
+  left: 10px;
+  top: 300px;
+}
+
+.myinvoice .box2 table {
+  position: absolute;
+  top: 65px;
+}
+
+.myticket .tbl-3 th,
+.myinvoice .box2 table th {
+  font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 40px 30px 10px;
+
+  color: #000000;
+}
+
+.myticket .tbl-3 td,
+.myinvoice .box2 table td {
+  font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 40px 45px 10px;
+
+  color: #b1b1b1;
+}
+
+.myticket hr {
+  position: absolute;
+  width: 770px;
+  height: 0px;
+  left: 0px;
+  top: 320px;
+
+  border: 1px solid #b7b7b7;
+}
+
+.myticket button {
+  position: absolute;
+  width: 200px;
+  height: 40px;
+  left: 780px;
+  top: 315px;
+
+  background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
+  border-radius: 5px;
+}
+
+.myticket button label {
+  position: absolute;
+  left: 25px;
+  top: 6px;
+
+  color: white;
+  font: 20px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+/* Approve */
+
+/* .myticket span {
+  position: absolute;
+  left: 50px;
+  top: 180px;
+  padding: 5px 5px 5px 5px;
+  color: white;
+  border: 1px solid rgb(10, 114, 19);
+  background-color: rgb(118, 202, 125);
+  border-radius: 5px;
+  font: 12px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+} */
+
+/* Pending */
+.myticket span {
+  position: absolute;
+  left: 50px;
+  top: 180px;
+  padding: 5px 5px 5px 5px;
+  color: white;
+  border: 1px solid rgb(224, 210, 14);
+  background-color: rgb(226, 196, 99);
+  border-radius: 5px;
+  font: 12px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+/* myinvoice */
+
+.myinvoice .box1 {
+  position: absolute;
+  width: 800px;
+  height: 150px;
+  left: 160px;
+  top: 190px;
+
+  background: #eeeeee;
+  border: 1px solid #bbbbbb;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.myinvoice .box1 p {
+  position: relative;
+  max-width: 600px;
+  top: 30px;
+  left: 150px;
+  font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.myinvoice .box1 img {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 60px;
+  height: 56px;
+}
+
+.myinvoice .box2 {
+  position: absolute;
+  width: 800px;
+  height: 150px;
+  left: 160px;
+  top: 350px;
+
+  border: 1px solid #b7b7b7;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.myinvoice .box2 h1 {
+  position: relative;
+  width: 130px;
+  font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  left: -1px;
+  top: -1px;
+  padding: 5px;
+
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: white;
+  background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
+}
+
+.myinvoice .box2 hr {
+  position: absolute;
+  width: 795px;
+  height: 0px;
+  left: 0px;
+  top: 85px;
+
+  border: 1px solid #b7b7b7;
+}
+
+.myinvoice h1 {
+  position: absolute;
+  left: 160px;
+  top: 520px;
+
+  font: 28px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #000000;
+}
+
+.myinvoice .box3 table {
+  position: absolute;
+  width: 450px;
+  height: 120px;
+  left: 160px;
+  top: 580px;
+
+  border: 1px solid #b7b7b7;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.myinvoice .box3 th {
+  font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  padding: 20px 20px 20px 10px;
+
+  font-style: normal;
+  font-weight: normal;
+  line-height: 25px;
+  color: #000000;
+}
+
+.myinvoice .box3 td {
+  font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 10px 10px 10px 10px;
+  background: #e6e6e6;
+  color: #000000;
+}
+
+.myinvoice .box3 button {
+  position: absolute;
+  width: 450px;
+  height: 40px;
+  left: 160px;
+  top: 710px;
+
+  background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
+  border-radius: 5px;
+
+  font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+}
+
+.myinvoice .box3 img {
+  position: absolute;
+  width: 215px;
+  height: 215px;
+  left: 640px;
+  top: 525px;
+
+  background: rgba(154, 154, 154, 0.23);
+  border: 3px solid #000000;
+  box-sizing: border-box;
+}
+
+.myinvoice .box3 label {
+  position: absolute;
+  left: 645px;
+  top: 745px;
+
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #818181;
+}
+
+.myinvoice .box4 .box {
+  width: 330px;
+  height: 90px;
+
+  background: rgba(154, 154, 154, 0.23);
+  border: 1px solid rgba(154, 154, 154, 0.23);
+  box-sizing: border-box;
+}
+
+.myinvoice .box4 {
+  position: absolute;
+  width: 330px;
+  height: 410px;
+  left: 980px;
+  top: 190px;
+
+  border: 1px solid #b7b7b7;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.myinvoice .box4 h2 {
+  position: relative;
+  left: 15px;
+  top: 5px;
+
+  font: 32px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 900;
+
+  color: #000000;
+}
+
+.myinvoice .box4 h3 {
+  position: relative;
+  text-align: left;
+  left: 15px;
+  top: 5px;
+
+  font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #878787;
+}
+
+.myinvoice .box4 .box img {
+  position: absolute;
+  left: 255px;
+  top: 13px;
+  width: 60px;
+  height: 60px;
+}
+
+.myinvoice .box4 .tbl-1 {
+  position: absolute;
+  left: 20px;
+  top: 200px;
+
+  line-height: 21px;
+  align-items: center;
+
+  color: #000000;
+}
+
+.myinvoice .box4 .tbl-2 {
+  position: absolute;
+  left: 20px;
+  top: 270px;
+
+  line-height: 21px;
+  align-items: center;
+
+  color: #000000;
+}
+
+.myinvoice .box4 .tbl-1 th,
+.myinvoice .box4 .tbl-2 th {
+  font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 0px 10px 40px;
+
+  color: #000000;
+}
+
+.myinvoice .box4 .tbl-1 td,
+.myinvoice .box4 .tbl-2 td {
+  font: 10px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 0px 10px 40px;
+
+  color: #959595;
+}
+
+.myinvoice .box4 h4 {
+  position: absolute;
+  left: 15px;
+  top: 100px;
+
+  font: 24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 33px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.myinvoice .box4 h5 {
+  position: absolute;
+  left: 15px;
+  top: 140px;
+
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  line-height: 16px;
+
+  color: #000000;
+}
+
+.myinvoice .box4 img {
+  position: absolute;
+  left: 30px;
+  top: 215px;
+  width: 15px;
+  height: 80px;
+}
+
+.transaction table {
+  position: absolute;
+  min-width: 1100px;
+  left: 160px;
+  top: 180px;
+}
+
+.transaction table th {
+  font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  padding: 0px 0px 10px 40px;
+
+  color: #14141b;
+}
+
+.transaction table td {
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  padding: 30px 0px 30px 40px;
+
+  border-top: 1px solid rgba(154, 154, 154, 0.23);
+  color: #14141b;
+}
+
+.transaction table img {
+  width: 20px;
+  height: 20px;
+  margin: 0px 20px 10px 0px;
 }
