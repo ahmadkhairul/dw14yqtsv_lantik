@@ -439,7 +439,8 @@
 }
 
 .myticket .tbl-3 th,
-.myinvoice .box2 table th {
+.myinvoice .box2 table th,
+.detailTransaction .tbl-3 th {
   font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   font-weight: 700;
   padding: 0px 40px 30px 10px;
@@ -448,7 +449,8 @@
 }
 
 .myticket .tbl-3 td,
-.myinvoice .box2 table td {
+.myinvoice .box2 table td,
+.detailTransaction .tbl-3 td {
   font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   font-weight: 700;
   padding: 0px 40px 45px 10px;
@@ -805,4 +807,139 @@
   width: 20px;
   height: 20px;
   margin: 0px 20px 10px 0px;
+}
+
+.modal-title {
+  font: 36px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.detailTransaction h2 {
+  position: relative;
+
+  font: 32px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 900;
+
+  color: #000000;
+}
+
+.detailTransaction h3 {
+  position: relative;
+  text-align: left;
+
+  font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #878787;
+}
+
+.detailTransaction h4 {
+  position: relative;
+  top: 20px;
+
+  font: 22px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 33px;
+
+  color: #000000;
+}
+
+.detailTransaction h5 {
+  position: relative;
+  top: 15px;
+
+  font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  line-height: 16px;
+
+  color: #000000;
+}
+
+.detailTransaction h6 {
+  position: relative;
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+
+  color: #000000;
+}
+
+.detailTransaction .tbl-1 {
+  position: relative;
+  top: 20px;
+  color: #000000;
+}
+
+.detailTransaction .tbl-2 {
+  position: relative;
+  top: 20px;
+
+  color: #000000;
+}
+
+.detailTransaction .tbl-3 {
+  position: relative;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+}
+
+.detailTransaction .tbl-3 th {
+  padding-top: 40px;
+}
+.detailTransaction .tbl-1 th,
+.detailTransaction .tbl-2 th {
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 10px 10px 20px;
+
+  color: #000000;
+}
+
+.detailTransaction .tbl-1 td,
+.detailTransaction .tbl-2 td {
+  font: 14px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700;
+  padding: 0px 10px 20px 20px;
+
+  color: #959595;
+}
+
+.detailTransaction .img-1 {
+  position: absolute;
+  left: 200px;
+  top: 55px;
+  width: 14px;
+  height: 80px;
+}
+
+.detailTransaction .img-2 {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  right: 75px;
+
+  background: rgba(154, 154, 154, 0.23);
+  border: 3px solid #000000;
+  box-sizing: border-box;
+}
+
+.detailTransaction label {
+  position: relative;
+
+  right: 55px;
+  font: 15px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #818181;
+}
+
+.detailTransaction .img-3 {
+  position: relative;
+  top: 25px;
+  left: 25px;
+  width: 60px;
+  height: 60px;
+}
+
+.modal-1 {
+  font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #ce1818;
+}
+
+.modal-2 {
+  font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #1725df;
 }

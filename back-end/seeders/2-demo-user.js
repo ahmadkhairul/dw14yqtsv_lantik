@@ -12,7 +12,7 @@ module.exports = {
         "users",
         [
           {
-            name: "Administrator",
+            name: "admin lantick",
             username: "admin_lantik",
             email: "admin@lantik.com",
             password: hash("admin"),
@@ -24,11 +24,11 @@ module.exports = {
             updatedAt: new Date()
           },
           {
-            name: "Melisa Mai",
-            username: "meymelisa",
-            email: "melisa@gmail.com",
-            password: hash("mey"),
-            gender: "Female",
+            name: "Juan Carlos",
+            username: "juancarlos",
+            email: "juan@mail.com",
+            password: hash("juan"),
+            gender: "Male",
             phone: "081081234321",
             address: "Permata Bintaro Residence",
             level: "User",
@@ -36,10 +36,10 @@ module.exports = {
             updatedAt: new Date()
           },
           {
-            name: "Jane Doe",
-            username: "janedoe",
-            email: "janedoe@gmail.com",
-            password: hash("jane"),
+            name: "Mey Melisa",
+            username: "meymelisa",
+            email: "mey@gmail.com",
+            password: hash("mey"),
             gender: "Male",
             phone: "081081234321",
             address: "Permata Bintaro Residence",

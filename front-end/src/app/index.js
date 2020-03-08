@@ -19,12 +19,8 @@ const getDuration = (timeA, timeB) => {
   return `${hours}J ${minutes}m`;
 };
 
-const App = ({ user, ticket, getTicket, getUser }) => {
-  const { loading: loadUser, error: errorUser } = user;
+const App = ({ ticket, getTicket, getUser }) => {
   const { data: dataTicket, loading: loadTicket, error: errorTicket } = ticket;
-
-  const loading = loadUser || loadTicket;
-  const error = errorUser || errorTicket;
 
   useEffect(() => {
     getTicket();

@@ -24,7 +24,11 @@ module.exports = {
       },
       startStation: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        references: {
+          model: "stations",
+          key: "id"
+        }
       },
       startTime: {
         allowNull: false,
@@ -32,7 +36,11 @@ module.exports = {
       },
       destinationStation: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        references: {
+          model: "stations",
+          key: "id"
+        }
       },
       arrivalTime: {
         allowNull: false,

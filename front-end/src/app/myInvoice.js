@@ -71,7 +71,7 @@ const App = ({ user, getUser }) => {
             </tbody>
           </table>
           <button>Bayar Sekarang</button>
-          <img src="./rekening.jpg" />
+          <img src="./rekening.jpg" alt="" />
           <label>upload payment proof</label>
         </div>
         <div className="box4">
@@ -80,7 +80,7 @@ const App = ({ user, getUser }) => {
             <h3>
               <b>Saturday</b>, 21 Februari 2020
             </h3>
-            <img src="./barcode.png" />
+            <img src="./barcode.png" alt="" />
           </div>
           <h4>Argo Wilis</h4>
           <h5>Eksekutif</h5>
@@ -112,7 +112,7 @@ const App = ({ user, getUser }) => {
               </tr>
             </tbody>
           </table>
-          <img src="./ticket.png" />
+          <img src="./ticket.png" alt="" />
         </div>
       </div>
     </Container>

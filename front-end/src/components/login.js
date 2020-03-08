@@ -39,9 +39,7 @@ const App = ({ login, postLogin }) => {
         aria-labelledby="example-modal-sizes-title-sm"
       >
         <Modal.Header closeButton>
-          <Modal.Title>
-            <span>LOGIN</span>
-          </Modal.Title>
+          <Modal.Title>LOGIN</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

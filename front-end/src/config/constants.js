@@ -11,3 +11,9 @@ export const DELETE_USER = "DELETE_USER";
 //TICKET
 export const GET_TICKET = "GET_TICKET";
 export const SEARCH_TICKET = "SEARCH_TICKET";
+
+//ORDER
+export const GET_ORDER = "GET_ORDER";
+export const GET_ORDERS = "GET_ORDERS";
+export const DELETE_ORDER = "DELETE_ORDER";
+export const UPDATE_ORDER = "UPDATE_ORDER";

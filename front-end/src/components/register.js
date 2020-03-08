@@ -60,9 +60,7 @@ const App = ({ register, postRegister }) => {
         aria-labelledby="example-modal-sizes-title-sm"
       >
         <Modal.Header closeButton>
-          <Modal.Title>
-            <span>REGISTER</span>
-          </Modal.Title>
+          <Modal.Title>REGISTER</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {error === true ? <h6>Email Already Taken</h6> : <></>}

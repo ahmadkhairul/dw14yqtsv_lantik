@@ -1,31 +1,64 @@
-import React, { Fragment, useState, useReducer } from "react";
-import { Modal } from "react-bootstrap";
+import React, { Fragment, useState } from "react";
+import { Modal, Form, Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { updateOrder } from "../_actions/order";
 
-const App = () => {
+const App = ({ id, status, updateOrder }) => {
   const [lgShow, setLgShow] = useState(false);
+  const [dataStatus, setDataStatus] = useState(status);
+
+  const value = { id, dataStatus };
+  const handleSubmit = () => {
+    updateOrder(value);
+    console.log(value);
+  };
 
   return (
     <Fragment>
-      <img onClick={() => setLgShow(true)} src="./edit.png" />
-      <Modal size="lg" show={lgShow} onHide={() => setLgShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <span>TRANSACTION</span>
-          </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body></Modal.Body>
-        <Modal.Footer></Modal.Footer>
+      <img onClick={() => setLgShow(true)} src="./edit.png" alt="" />
+      <Modal size="sm" show={lgShow} onHide={() => setLgShow(false)}>
+        <Form onSubmit={handleSubmit}>
+          <Modal.Header closeButton>
+            <Modal.Title>PAYMENT</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Group>
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                as="select"
+                name="dataStatus"
+                value={dataStatus}
+                onChange={event => {
+                  setDataStatus(event.target.value);
+                }}
+              >
+                <option value="Approved">Approved</option>
+                <option value="Pending">Pending</option>
+                <option value="Cancel">Cancel</option>
+              </Form.Control>
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button className="btn-modal" type="submit">
+              Edit
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </Fragment>
   );
 };
 
-export default App;
-// function mapStateToProps(state) {
-//   return {
-//     login: state.auth
-//   };
-// }
+function mapStateToProps(state) {
+  return {
+    order: state.order
+  };
+}
 
-// export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    updateOrder: value => dispatch(updateOrder(value))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

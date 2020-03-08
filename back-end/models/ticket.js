@@ -16,7 +16,14 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   ticket.associate = function(models) {
-    // associations can be defined here
+    ticket.belongsTo(models.station, {
+      as: "start",
+      foreignKey: "startStation"
+    });
+    ticket.belongsTo(models.station, {
+      as: "destination",
+      foreignKey: "destinationStation"
+    });
   };
   return ticket;
 };

@@ -1,20 +1,122 @@
-import React, { Fragment, useState, useReducer } from "react";
-import { Modal } from "react-bootstrap";
+import React, { Fragment, useState } from "react";
+import { Modal, Row, Col } from "react-bootstrap";
+import Moment from "react-moment";
+import { toRupiah } from "indo-formatter";
 
-const App = () => {
+const App = ({ detail }) => {
   const [lgShow, setLgShow] = useState(false);
 
   return (
     <Fragment>
-      <img onClick={() => setLgShow(true)} src="./search.png" />
-      <Modal size="lg" show={lgShow} onHide={() => setLgShow(false)}>
+      <img onClick={() => setLgShow(true)} src="./search.png" alt="" />
+      <Modal
+        className="detailTransaction"
+        size="lg"
+        show={lgShow}
+        onHide={() => setLgShow(false)}
+      >
         <Modal.Header closeButton>
-          <Modal.Title>
-            <span>INVOICE</span>
-          </Modal.Title>
+          <Modal.Title>INVOICE</Modal.Title>
         </Modal.Header>
-
-        <Modal.Body></Modal.Body>
+        <Modal.Body>
+          <img className="img-1" src="./ticket.png" alt="" />
+          <Row>
+            <Col sm={3}>
+              <h2>Kereta API</h2>
+              <h3>
+                <Moment format="dddd, DD MMMM YYYY">
+                  {detail.ticket.dateStart}
+                </Moment>
+              </h3>
+              <h4>{detail.ticket.name}</h4>
+              <h5>{detail.ticket.classType}</h5>
+              <img className="img-3" src="./barcode.png" alt="" />
+            </Col>
+            <Col sm={6}>
+              <table className="tbl-1">
+                <thead>
+                  <tr>
+                    <th>
+                      <Moment format="HH:mm">{detail.ticket.startTime}</Moment>
+                    </th>
+                    <th>
+                      {detail.ticket.start.city} ({detail.ticket.start.code})
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <Moment format="DD MMMM YYYY">
+                        {detail.ticket.startTime}
+                      </Moment>
+                    </td>
+                    <td>Stasiun {detail.ticket.start.name}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table className="tbl-2">
+                <thead>
+                  <tr>
+                    <th>
+                      <Moment format="HH:mm">
+                        {detail.ticket.arrivalTime}
+                      </Moment>
+                    </th>
+                    <th>
+                      {detail.ticket.destination.city} (
+                      {detail.ticket.destination.code})
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <Moment format="DD MMMM YYYY">
+                        {detail.ticket.arrivalTime}
+                      </Moment>
+                    </td>
+                    <td>Stasiun {detail.ticket.destination.name}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </Col>
+            <Col sm={3}>
+              <img className="img-2" src="./rekening.jpg" alt="" />
+              <label>upload payment proof</label>
+            </Col>
+          </Row>
+          <p></p>
+          <table className="tbl-3">
+            <thead>
+              <tr>
+                <th>No. Tanda Pengenal</th>
+                <th>Nama Pengenal</th>
+                <th>No. Handphone</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>31175033003970001</td>
+                <td>{detail.user.name}</td>
+                <td>{detail.user.phone}</td>
+                <td>{detail.user.email}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p></p>
+          <Row>
+            <Col sm={9}>
+              <h6>
+                <b>Total</b>
+              </h6>
+            </Col>
+            <Col sm={3}>
+              <h6>{toRupiah(detail.totalPrice)}</h6>
+            </Col>
+          </Row>
+        </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
     </Fragment>
@@ -22,10 +124,3 @@ const App = () => {
 };
 
 export default App;
-// function mapStateToProps(state) {
-//   return {
-//     login: state.auth
-//   };
-// }
-
-// export default connect(mapStateToProps)(App);

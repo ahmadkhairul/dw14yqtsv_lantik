@@ -1,9 +1,4 @@
-import {
-  GET_USER,
-  SHOW_USER,
-  UPDATE_USER,
-  DELETE_USER
-} from "../config/constants";
+import { GET_USER } from "../config/constants";
 import { API, setToken } from "../config/api";
 
 export const getUser = () => {
