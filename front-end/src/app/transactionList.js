@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import Header from "../components/header";
 import { Container } from "react-bootstrap";
+
+import { getOrders } from "../_actions/order";
+
+import Header from "../components/header";
 import Detail from "../components/detailTransaction";
 import Edit from "../components/editTransaction";
 import Destroy from "../components/deleteTransaction";
 
-const App = ({ order }) => {
+const App = ({ order, getOrders }) => {
   const { data: dataOrder, loading: loadOrder, error: errorOrder } = order;
+
+  useEffect(() => {
+    getOrders();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (errorOrder) return <h2>AN UNKNOWN ERROR OCCURED</h2>;
 
@@ -60,4 +67,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    getOrders: () => dispatch(getOrders())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

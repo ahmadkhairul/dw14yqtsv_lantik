@@ -4,6 +4,7 @@ import user from "../_reducers/user";
 import ticket from "../_reducers/ticket";
 import order from "../_reducers/order";
 import station from "../_reducers/station";
+import setdata from "../_reducers/setdata";
 import { logger, promise } from "../middleware";
 
 // Global state
@@ -12,7 +13,8 @@ const rootReducers = combineReducers({
   user,
   ticket,
   order,
-  station
+  station,
+  setdata
 });
 
 // Setup store for Redux

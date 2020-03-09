@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Moment from "react-moment";
 import moment from "moment";
 import { connect } from "react-redux";
@@ -9,6 +9,7 @@ import Header from "../components/header";
 import SearchTicket from "../components/searchTicket";
 import AddTransaction from "../components/addTransaction";
 import FailTransaction from "../components/failTransaction";
+import { getStation } from "../_actions/station";
 
 const getDuration = (timeA, timeB) => {
   var startTime = moment(timeA, "YYYY-MM-DD HH:mm:ss");
@@ -20,8 +21,13 @@ const getDuration = (timeA, timeB) => {
   return `${hours}J ${minutes}m`;
 };
 
-const App = ({ ticket }) => {
+const App = ({ ticket, getStation }) => {
   const { data: dataTicket, loading: loadTicket, error: errorTicket } = ticket;
+
+  useEffect(() => {
+    getStation();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const token = localStorage.getItem("token");
 
   if (errorTicket) return <h2>AN UNKNOWN ERROR OCCURED</h2>;
@@ -92,9 +98,14 @@ const App = ({ ticket }) => {
 
 function mapStateToProps(state) {
   return {
-    ticket: state.ticket,
-    user: state.user
+    ticket: state.ticket
   };
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    getStation: () => dispatch(getStation())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

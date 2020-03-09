@@ -4,9 +4,6 @@ export const AUTH_REGISTER = "AUTH_REGISTER";
 
 //USER
 export const GET_USER = "GET_USER";
-export const SHOW_USER = "SHOW_USER";
-export const UPDATE_USER = "UPDATE_USER";
-export const DELETE_USER = "DELETE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 
 //TICKET
@@ -23,3 +20,7 @@ export const SAVE_ORDER = "SAVE_ORDER";
 
 //STATION
 export const GET_STATION = "GET_STATION";
+
+//GET ID
+export const SET_QUANTITY = "SET_QUANTITY";
+export const SET_ORDER_ID = "SET_ORDER_ID";

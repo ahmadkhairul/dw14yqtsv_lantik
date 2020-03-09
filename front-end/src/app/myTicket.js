@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import Moment from "react-moment";
 
 import Header from "../components/header";
-const App = ({ order }) => {
+import { getOrdersByUser } from "../_actions/order";
+import { updateOrderId } from "../_actions/setdata";
+
+const App = ({ order, getOrdersByUser, updateOrderId }) => {
   const { dataByUser, loading } = order;
+
+  useEffect(() => {
+    getOrdersByUser();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <>NOW LOADING</>;
 
@@ -99,7 +106,9 @@ const App = ({ order }) => {
           {detail.status === "Approved" ? (
             <img className="barcode" src="./barcode.png" alt="" />
           ) : (
-            <button>Bayar Sekarang</button>
+            <button onClick={() => updateOrderId(detail.id)}>
+              Bayar Sekarang
+            </button>
           )}
         </div>
       ))}
@@ -113,4 +122,11 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    getOrdersByUser: () => dispatch(getOrdersByUser()),
+    updateOrderId: value => dispatch(updateOrderId(value))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

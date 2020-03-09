@@ -3,16 +3,17 @@ import {
   GET_ORDERS_BY_USER,
   GET_ORDERS,
   DELETE_ORDER,
-  UPDATE_ORDER
+  UPDATE_ORDER,
+  SAVE_ORDER
 } from "../config/constants";
 import { API, setToken } from "../config/api";
 
-export const getOrderById = id => {
+export const getOrderById = value => {
+  const id = value;
   return {
     type: GET_ORDER_BY_ID,
     payload: async () => {
       setToken();
-      console.log("Ping");
       const res = await API.get("/order/" + id);
       const { data } = res.data;
       return data;
@@ -73,18 +74,17 @@ export const updateOrder = value => {
   };
 };
 
-// export const saveOrder = value => {
-//   const { id, dataStatus } = value;
-//   return {
-//     type: UPDATE_ORDER,
-//     payload: async () => {
-//       setToken();
-//       await API.save("/order", {
-//         status: dataStatus
-//       });
-//       const res = await API.get("/orders");
-//       const { data } = res.data;
-//       return data;
-//     }
-//   };
-// };
+export const postOrder = value => {
+  const { id, price, quantity } = value;
+  return {
+    type: SAVE_ORDER,
+    payload: async () => {
+      setToken();
+      await API.post("/order", {
+        ticketId: id,
+        qty: quantity,
+        price: price
+      });
+    }
+  };
+};

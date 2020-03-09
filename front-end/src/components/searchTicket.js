@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Table, Row, Col, Nav, Tab, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import { searchTicket } from "../_actions/ticket";
+import { updateQuantity } from "../_actions/setdata";
 import moment from "moment";
 
-const App = ({ station, searchTicket }) => {
+const App = ({ station, searchTicket, updateQuantity }) => {
   const [destination, setDestination] = useState("");
   const [start, setStart] = useState("");
   const [baby, setBaby] = useState(1);
@@ -147,6 +148,7 @@ const App = ({ station, searchTicket }) => {
                               value={adult}
                               onChange={event => {
                                 setAdult(event.target.value);
+                                updateQuantity(event.target.value);
                               }}
                             >
                               <option value="1">1</option>
@@ -202,7 +204,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    searchTicket: value => dispatch(searchTicket(value))
+    searchTicket: value => dispatch(searchTicket(value)),
+    updateQuantity: value => dispatch(updateQuantity(value))
   };
 }
 

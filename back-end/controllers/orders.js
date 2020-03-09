@@ -19,6 +19,7 @@ exports.index = async (req, res) => {
             as: "ticket",
             attributes: [
               "name",
+              "price",
               "dateStart",
               "classType",
               "startTime",
@@ -67,6 +68,7 @@ exports.show = async (req, res) => {
           as: "ticket",
           attributes: [
             "name",
+            "price",
             "dateStart",
             "classType",
             "startTime",
@@ -112,6 +114,7 @@ exports.showId = async (req, res) => {
           as: "ticket",
           attributes: [
             "name",
+            "price",
             "dateStart",
             "classType",
             "startTime",
