@@ -35,9 +35,9 @@ const App = ({ register, postRegister }) => {
     phone
   } = value;
 
-  function handleSubmit(event) {
+  const handleSubmit = async event => {
     event.preventDefault();
-    postRegister({
+    await postRegister({
       firstname,
       username,
       email,
@@ -46,7 +46,8 @@ const App = ({ register, postRegister }) => {
       address,
       phone
     });
-  }
+    // window.location.reload();
+  };
 
   return (
     <Fragment>

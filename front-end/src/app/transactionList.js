@@ -1,28 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { getOrders } from "../_actions/order";
-import { getUser } from "../_actions/user";
 import Header from "../components/header";
 import { Container } from "react-bootstrap";
 import Detail from "../components/detailTransaction";
 import Edit from "../components/editTransaction";
 import Destroy from "../components/deleteTransaction";
 
-const App = ({ order, user, getUser, getOrders }) => {
-  const { loading: loadUser, error: errorUser } = user;
+const App = ({ order }) => {
   const { data: dataOrder, loading: loadOrder, error: errorOrder } = order;
 
-  const loading = loadUser || loadOrder;
-  const error = errorUser || errorOrder;
+  if (errorOrder) return <h2>AN UNKNOWN ERROR OCCURED</h2>;
 
-  useEffect(() => {
-    getOrders();
-    // getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  if (error) return <h2>AN UNKNOWN ERROR OCCURED</h2>;
-
-  if (loading) return <>NOW LOADING</>;
+  if (loadOrder) return <h2>NOW LOADING</h2>;
 
   return (
     <Container fluid>
@@ -67,16 +56,8 @@ const App = ({ order, user, getUser, getOrders }) => {
 // export default App;
 function mapStateToProps(state) {
   return {
-    order: state.order,
-    user: state.user
+    order: state.order
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getOrders: () => dispatch(getOrders()),
-    getUser: () => dispatch(getUser())
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

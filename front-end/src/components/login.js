@@ -22,10 +22,11 @@ const App = ({ login, postLogin }) => {
 
   const { username, password } = value;
 
-  function handleSubmit(event) {
+  const handleSubmit = async event => {
     event.preventDefault();
-    postLogin({ username, password });
-  }
+    await postLogin({ username, password });
+    // window.location.reload();
+  };
 
   return (
     <Fragment>

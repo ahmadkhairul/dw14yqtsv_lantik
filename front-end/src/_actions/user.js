@@ -1,4 +1,4 @@
-import { GET_USER } from "../config/constants";
+import { GET_USER, LOGOUT_USER } from "../config/constants";
 import { API, setToken } from "../config/api";
 
 export const getUser = () => {
@@ -10,5 +10,12 @@ export const getUser = () => {
       const { data } = res.data;
       return data;
     }
+  };
+};
+
+export const delUser = () => {
+  return {
+    type: LOGOUT_USER,
+    payload: null
   };
 };

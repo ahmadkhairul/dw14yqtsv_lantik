@@ -182,6 +182,9 @@
   width: 120px;
   height: 40px;
 
+  font: 26px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #ffffff;
+
   background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
   border-radius: 5px;
 }
@@ -199,10 +202,6 @@
   width: 25px;
   height: 25px;
   border-radius: 50px;
-}
-.buy-tix button label {
-  font: 26px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-  color: #ffffff;
 }
 
 .buy-tix form {
@@ -260,6 +259,8 @@
   width: 100px;
   height: 40px;
 
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #ffffff;
   background: linear-gradient(180deg, #615fce 0%, #65509e 100%);
   border-radius: 12px;
 }
@@ -411,15 +412,15 @@
 }
 
 /* Barcode */
-/* .myticket img {
+.myticket .barcode {
   position: relative;
   left: 805px;
-  top: 250px;
+  top: 130px;
   width: 160px;
   height: 160px;
-} */
+}
 
-.myticket img {
+.myticket .ticket {
   position: absolute;
   left: 245px;
   top: 125px;
@@ -475,21 +476,16 @@
   left: 780px;
   top: 315px;
 
+  color: white;
+  font: 20px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+
   background: linear-gradient(90deg, #ec7ab7 -0.6%, #ec7a7a 100%);
   border-radius: 5px;
 }
 
-.myticket button label {
-  position: absolute;
-  left: 25px;
-  top: 6px;
-
-  color: white;
-  font: 20px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-}
 /* Approve */
 
-/* .myticket span {
+.myticket .approved {
   position: absolute;
   left: 50px;
   top: 180px;
@@ -499,10 +495,10 @@
   background-color: rgb(118, 202, 125);
   border-radius: 5px;
   font: 12px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-} */
+}
 
 /* Pending */
-.myticket span {
+.myticket .pending {
   position: absolute;
   left: 50px;
   top: 180px;

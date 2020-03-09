@@ -1,17 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { getUser } from "../_actions/user";
-import Header from "../components/header";
 import { Container } from "react-bootstrap";
+import Moment from "react-moment";
 
-const App = ({ user, getUser }) => {
-  const { data, loading, error } = user;
-
-  useEffect(() => {
-    getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  if (error) return <h2>AN UNKNOWN ERROR OCCURED</h2>;
+import Header from "../components/header";
+const App = ({ order }) => {
+  const { dataByUser, loading } = order;
 
   if (loading) return <>NOW LOADING</>;
 
@@ -19,147 +13,104 @@ const App = ({ user, getUser }) => {
     <Container fluid>
       <Header />
       <h1 className="title">Tiket Saya</h1>
-      <div className="myticket">
-        {/* <img src="./barcode.png" alt="" /> */}
-        <h1>Land Tick</h1>
-        <h2>Kereta Api</h2>
-        <h3>
-          <b>Saturday</b>, 21 Februari 2020
-        </h3>
-        <h4>Argo Wilis</h4>
-        <h5>Eksekutif</h5>
-        <span>Pending</span>
-        {/* <span>Approve</span> */}
-        <img src="./ticket.png" alt="" />
-        <table className="tbl-1">
-          <thead>
-            <tr>
-              <th>05.00</th>
-              <th>Jakarta (GMR)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>21 Februari 2020</td>
-              <td>Stasiun Gambir</td>
-            </tr>
-          </tbody>
-        </table>
-        <table className="tbl-2">
-          <thead>
-            <tr>
-              <th>10.05</th>
-              <th>Surabaya (SBY)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>21 Februari 2020</td>
-              <td>Stasiun Surabaya</td>
-            </tr>
-          </tbody>
-        </table>
-        <table className="tbl-3">
-          <thead>
-            <tr>
-              <th>No. Tanda Pengenal</th>
-              <th>Nama Pengenal</th>
-              <th>No. Handphone</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>31175033003970001</td>
-              <td>{data.name}</td>
-              <td>081454132543</td>
-              <td>{data.email}</td>
-            </tr>
-          </tbody>
-        </table>
-        <hr />
-        <button>
-          <label>Bayar Sekarang</label>
-        </button>
-      </div>
-
-      <div className="myticket">
-        {/* <img src="./barcode.png" alt="" /> */}
-        <h1>Land Tick</h1>
-        <h2>Kereta Api</h2>
-        <h3>
-          <b>Saturday</b>, 21 Februari 2020
-        </h3>
-        <h4>Argo Wilis</h4>
-        <h5>Eksekutif</h5>
-        <span>Pending</span>
-        {/* <span>Approve</span> */}
-        <img src="./ticket.png" alt="" />
-        <table className="tbl-1">
-          <thead>
-            <tr>
-              <th>05.00</th>
-              <th>Jakarta (GMR)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>21 Februari 2020</td>
-              <td>Stasiun Gambir</td>
-            </tr>
-          </tbody>
-        </table>
-        <table className="tbl-2">
-          <thead>
-            <tr>
-              <th>10.05</th>
-              <th>Surabaya (SBY)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>21 Februari 2020</td>
-              <td>Stasiun Surabaya</td>
-            </tr>
-          </tbody>
-        </table>
-        <table className="tbl-3">
-          <thead>
-            <tr>
-              <th>No. Tanda Pengenal</th>
-              <th>Nama Pengenal</th>
-              <th>No. Handphone</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>31175033003970001</td>
-              <td>{data.name}</td>
-              <td>081454132543</td>
-              <td>{data.email}</td>
-            </tr>
-          </tbody>
-        </table>
-        <hr />
-        <button>
-          <label>Bayar Sekarang</label>
-        </button>
-      </div>
+      {dataByUser.map((detail, index) => (
+        <div className="myticket" key={detail.id} index={index}>
+          <h1>Land Tick</h1>
+          <h2>Kereta Api</h2>
+          <h3>
+            <b>
+              <Moment format="dddd">{detail.ticket.dateStart}</Moment>,
+            </b>
+            &nbsp;
+            <Moment format="DD MMMM YYYY">{detail.ticket.dateStart}</Moment>
+          </h3>
+          <h4>{detail.ticket.name}</h4>
+          <h5>{detail.ticket.classType}</h5>
+          {detail.status === "Approved" ? (
+            <span className="approved"> {detail.status}</span>
+          ) : (
+            <span className="pending">{detail.status}</span>
+          )}
+          <img className="ticket" src="./ticket.png" alt="" />
+          <table className="tbl-1">
+            <thead>
+              <tr>
+                <th>
+                  <Moment format="HH:mm">{detail.ticket.startTime}</Moment>
+                </th>
+                <th>
+                  {detail.ticket.start.city} ({detail.ticket.start.code})
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Moment format="DD MMMM YYYY">
+                    {detail.ticket.startTime}
+                  </Moment>
+                </td>
+                <td>Stasiun {detail.ticket.start.name}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table className="tbl-2">
+            <thead>
+              <tr>
+                <th>
+                  <Moment format="HH:mm">{detail.ticket.arrivalTime}</Moment>
+                </th>
+                <th>
+                  {detail.ticket.destination.city} (
+                  {detail.ticket.destination.code})
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Moment format="DD MMMM YYYY">
+                    {detail.ticket.arrivalTime}
+                  </Moment>
+                </td>
+                <td>Stasiun {detail.ticket.destination.name}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table className="tbl-3">
+            <thead>
+              <tr>
+                <th>No. Tanda Pengenal</th>
+                <th>Nama Pengenal</th>
+                <th>No. Handphone</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>31175033003970001</td>
+                <td>{detail.user.name}</td>
+                <td>{detail.user.phone}</td>
+                <td>{detail.user.email}</td>
+              </tr>
+            </tbody>
+          </table>
+          <hr />
+          {detail.status === "Approved" ? (
+            <img className="barcode" src="./barcode.png" alt="" />
+          ) : (
+            <button>Bayar Sekarang</button>
+          )}
+        </div>
+      ))}
     </Container>
   );
 };
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    order: state.order
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getUser: () => dispatch(getUser())
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

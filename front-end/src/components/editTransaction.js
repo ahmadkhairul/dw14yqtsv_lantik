@@ -10,7 +10,6 @@ const App = ({ id, status, updateOrder }) => {
   const value = { id, dataStatus };
   const handleSubmit = () => {
     updateOrder(value);
-    console.log(value);
   };
 
   return (

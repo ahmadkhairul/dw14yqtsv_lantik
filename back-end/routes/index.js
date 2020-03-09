@@ -7,6 +7,7 @@ const UserController = require("../controllers/users");
 const AuthController = require("../controllers/auth");
 const TicketController = require("../controllers/tickets");
 const OrderController = require("../controllers/orders");
+const StationController = require("../controllers/stations");
 
 router.post("/login", AuthController.login);
 router.post("/register", AuthController.register);
@@ -18,11 +19,17 @@ router.put("/user/:id", auth, UserController.update);
 router.delete("/user/:id", auth, UserController.destroy);
 
 router.get("/tickets", TicketController.index);
-router.get("/ticketSearch", TicketController.search);
+router.post("/ticketSearch", TicketController.search);
+router.post("/ticket", auth, TicketController.save);
 
 router.get("/orders", auth, OrderController.index);
 router.get("/order", auth, OrderController.show);
+router.get("/order/:id", auth, OrderController.showId);
+
 router.put("/order/:id", auth, OrderController.update);
 router.delete("/order/:id", auth, OrderController.destroy);
+router.post("/order", auth, OrderController.save);
+
+router.get("/stations", StationController.index);
 
 module.exports = router;

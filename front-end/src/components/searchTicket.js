@@ -4,13 +4,18 @@ import { connect } from "react-redux";
 import { searchTicket } from "../_actions/ticket";
 import moment from "moment";
 
-const App = ({ ticket, searchTicket }) => {
+const App = ({ station, searchTicket }) => {
   const [destination, setDestination] = useState("");
   const [start, setStart] = useState("");
-  const [baby, setBaby] = useState("");
-  const [adult, setAdult] = useState("");
-  const [errMessage, setErrMessage] = useState("");
+  const [baby, setBaby] = useState(1);
+  const [adult, setAdult] = useState(1);
   const [dateStart, setDateStart] = useState(moment().format("YYYY-MM-DD"));
+
+  const {
+    data: dataStation,
+    loading: loadStation,
+    error: errorStation
+  } = station;
 
   const handleClick = event => {
     event.preventDefault();
@@ -18,17 +23,16 @@ const App = ({ ticket, searchTicket }) => {
     setStart(destination);
   };
 
+  const value = { destination, start, dateStart, adult };
+
   const handleSubmit = event => {
     event.preventDefault();
-    if (adult >= baby) {
-      const qty = adult;
-      searchTicket({ destination, start, dateStart, qty });
-    } else if (baby > adult) {
-      setErrMessage("Jumlah bayi tidak boleh melebihi jumlah orang dewasa");
-    } else {
-      setErrMessage("");
-    }
+    searchTicket(value);
   };
+
+  if (loadStation) return <h1>Now loading</h1>;
+
+  if (errorStation) return <h1>Station data not found</h1>;
 
   return (
     <div className="buy-tix">
@@ -48,11 +52,8 @@ const App = ({ ticket, searchTicket }) => {
         <Col sm={10}>
           <Tab.Content>
             <Tab.Pane eventKey="first">
-              <h5>
-                Tiket Kereta Api{" "}
-                <label style={{ color: "red" }}>{errMessage}</label>
-              </h5>
-              <Form onSubmit={handleSubmit}>
+              <h5>Tiket Kereta Api</h5>
+              <Form onSubmit={e => handleSubmit(e)}>
                 <Row>
                   <Col sm={5}>
                     <Table>
@@ -61,14 +62,24 @@ const App = ({ ticket, searchTicket }) => {
                           <td colSpan="2">
                             <Form.Label>Asal</Form.Label>
                             <Form.Control
-                              type="text"
+                              as="select"
                               name="start"
-                              autoComplete="off"
                               value={start}
                               onChange={event => {
                                 setStart(event.target.value);
                               }}
-                            />
+                            >
+                              <option value=""></option>
+                              {dataStation.map((item, index) => (
+                                <option
+                                  key={item.id}
+                                  index={index}
+                                  value={item.id}
+                                >
+                                  {item.city} - {item.name}
+                                </option>
+                              ))}
+                            </Form.Control>
                           </td>
                         </tr>
                         <tr>
@@ -107,14 +118,24 @@ const App = ({ ticket, searchTicket }) => {
                           <td colSpan="3">
                             <Form.Label>Tujuan</Form.Label>
                             <Form.Control
-                              type="text"
+                              as="select"
                               name="destination"
-                              autoComplete="off"
                               value={destination}
                               onChange={event => {
                                 setDestination(event.target.value);
                               }}
-                            />
+                            >
+                              <option value=""></option>
+                              {dataStation.map((item, index) => (
+                                <option
+                                  key={item.id}
+                                  index={index}
+                                  value={item.id}
+                                >
+                                  {item.city} - {item.name}
+                                </option>
+                              ))}
+                            </Form.Control>
                           </td>
                         </tr>
                         <tr>
@@ -144,7 +165,6 @@ const App = ({ ticket, searchTicket }) => {
                                 setBaby(event.target.value);
                               }}
                             >
-                              <option value="0">0</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -152,9 +172,7 @@ const App = ({ ticket, searchTicket }) => {
                             </Form.Control>
                           </td>
                           <td>
-                            <button type="submit">
-                              <label>Cari</label>
-                            </button>
+                            <button type="submit">Cari</button>
                           </td>
                         </tr>
                       </tbody>
@@ -177,7 +195,8 @@ const App = ({ ticket, searchTicket }) => {
 
 function mapStateToProps(state) {
   return {
-    ticket: state.ticket
+    ticket: state.ticket,
+    station: state.station
   };
 }
 

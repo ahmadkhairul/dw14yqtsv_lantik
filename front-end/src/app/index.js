@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
+import Moment from "react-moment";
+import moment from "moment";
 import { connect } from "react-redux";
-import { getTicket } from "../_actions/ticket";
-import { getUser } from "../_actions/user";
+import { Container, Tab, Table } from "react-bootstrap";
+
 import Banner from "../components/banner";
 import Header from "../components/header";
 import SearchTicket from "../components/searchTicket";
-import Moment from "react-moment";
-import moment from "moment";
-import { Container, Tab, Table } from "react-bootstrap";
+import AddTransaction from "../components/addTransaction";
+import FailTransaction from "../components/failTransaction";
 
 const getDuration = (timeA, timeB) => {
   var startTime = moment(timeA, "YYYY-MM-DD HH:mm:ss");
@@ -19,13 +20,9 @@ const getDuration = (timeA, timeB) => {
   return `${hours}J ${minutes}m`;
 };
 
-const App = ({ ticket, getTicket, getUser }) => {
+const App = ({ ticket }) => {
   const { data: dataTicket, loading: loadTicket, error: errorTicket } = ticket;
-
-  useEffect(() => {
-    getTicket();
-    getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const token = localStorage.getItem("token");
 
   if (errorTicket) return <h2>AN UNKNOWN ERROR OCCURED</h2>;
 
@@ -62,19 +59,26 @@ const App = ({ ticket, getTicket, getUser }) => {
                     <h5>
                       <Moment format="HH:mm">{item.startTime}</Moment>
                     </h5>
-                    <h6>{item.startStation}</h6>
+                    <h6>Stasiun {item.start.name}</h6>
                   </td>
                   <td>
                     <h5>
                       <Moment format="HH:mm">{item.arrivalTime}</Moment>
                     </h5>
-                    <h6>{item.destinationStation}</h6>
+                    <h6>Stasiun {item.destination.name}</h6>
                   </td>
                   <td>
                     <h5>{getDuration(item.startTime, item.arrivalTime)}</h5>
                   </td>
                   <td>
                     <h5>Rp. {item.price}</h5>
+                  </td>
+                  <td>
+                    {token === null ? (
+                      <FailTransaction />
+                    ) : (
+                      <AddTransaction data={item} />
+                    )}
                   </td>
                 </tr>
               );
@@ -93,11 +97,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getTicket: () => dispatch(getTicket()),
-    getUser: () => dispatch(getUser())
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

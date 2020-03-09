@@ -1,4 +1,4 @@
-import { GET_TICKET, SEARCH_TICKET } from "../config/constants";
+import { GET_STATION } from "../config/constants";
 
 const initialState = {
   data: [],
@@ -8,26 +8,18 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `${GET_TICKET}_PENDING`:
-    case `${SEARCH_TICKET}_PENDING`:
+    case `${GET_STATION}_PENDING`:
       return {
         ...state,
         loading: true
       };
-    case `${GET_TICKET}_FULFILLED`:
+    case `${GET_STATION}_FULFILLED`:
       return {
         ...state,
         data: action.payload,
         loading: false
       };
-    case `${SEARCH_TICKET}_FULFILLED`:
-      return {
-        ...state,
-        data: action.payload,
-        loading: false
-      };
-    case `${GET_TICKET}_REJECTED`:
-    case `${SEARCH_TICKET}_REJECTED`:
+    case `${GET_STATION}_REJECTED`:
       return {
         ...state,
         loading: false,

@@ -68,7 +68,7 @@ exports.auth = async (req, res) => {
     const data = await User.findOne({
       where: { id },
       attributes: {
-        exclude: ["id", "password", "createdAt", "updatedAt"]
+        exclude: ["password", "createdAt", "updatedAt"]
       }
     });
     if (data) {

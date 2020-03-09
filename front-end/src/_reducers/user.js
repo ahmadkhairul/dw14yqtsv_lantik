@@ -2,7 +2,8 @@ import {
   GET_USER,
   SHOW_USER,
   UPDATE_USER,
-  DELETE_USER
+  DELETE_USER,
+  LOGOUT_USER
 } from "../config/constants";
 
 const initialState = {
@@ -38,6 +39,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: true
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        data: action.payload
       };
     default:
       return state;

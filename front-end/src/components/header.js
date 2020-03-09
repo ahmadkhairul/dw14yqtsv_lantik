@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Register from "../components/register";
 import Login from "../components/login";
+import { delUser } from "../_actions/user";
 
-const App = ({ user }) => {
+const App = ({ user, delUser }) => {
   const { data, error } = user;
 
-  function handleLogout() {
+  const handleLogout = async () => {
     localStorage.removeItem("token");
-  }
+    await delUser();
+    // window.location.reload();
+  };
 
   if (error) {
     return (
@@ -65,4 +68,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    delUser: () => dispatch(delUser())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
