@@ -1,35 +1,31 @@
-import React, { Fragment, useState, useReducer } from "react";
+import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import { postLogin } from "../_actions/auth";
 
 const App = ({ login, postLogin }) => {
+  const { data, error, loading } = login;
+
   const [lgShow, setLgShow] = useState(false);
-  const { loading, error } = login;
-  const [value, setValue] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      username: "",
-      password: ""
-    }
-  );
-
-  const handleChange = evt => {
-    const name = evt.target.name;
-    const newValue = evt.target.value;
-    setValue({ [name]: newValue });
-  };
-
-  const { username, password } = value;
-
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmit = async event => {
     event.preventDefault();
     await postLogin({ username, password });
-    // window.location.reload();
   };
 
+  const errMessage = "";
+
+  if (error === true) {
+    const errMessage = "<h6>Username or Password Wrong</h6>";
+  }
+
+  if (loading === true) {
+    const errMessage = "<h6>Now Loading</h6>";
+  }
+
   return (
-    <Fragment>
+    <>
       <button className="btn-login" onClick={() => setLgShow(true)}>
         <label>Login</label>
       </button>
@@ -42,17 +38,15 @@ const App = ({ login, postLogin }) => {
         <Modal.Header closeButton>
           <Modal.Title>LOGIN</Modal.Title>
         </Modal.Header>
-
         <Modal.Body>
-          {error === true ? <h6>Username or Password Wrong</h6> : <></>}
-          {loading === true ? <h6>Now Loading</h6> : <></>}
+          {errMessage}
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Control
                 type="text"
-                onChange={handleChange}
                 name="username"
                 value={username}
+                onChange={e => setUsername(e.target.value)}
                 autoComplete="off"
                 placeholder="Username"
               />
@@ -60,9 +54,9 @@ const App = ({ login, postLogin }) => {
             <Form.Group>
               <Form.Control
                 type="password"
-                onChange={handleChange}
                 name="password"
                 value={password}
+                onChange={e => setPassword(e.target.value)}
                 autoComplete="off"
                 placeholder="Password"
               />
@@ -74,7 +68,7 @@ const App = ({ login, postLogin }) => {
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
-    </Fragment>
+    </>
   );
 };
 

@@ -29,6 +29,7 @@ router.get("/order/:id", auth, OrderController.showId);
 router.put("/order/:id", auth, OrderController.update);
 router.delete("/order/:id", auth, OrderController.destroy);
 router.post("/order", auth, OrderController.save);
+router.post("/order/proof/:id", auth, OrderController.updateProof);
 
 router.get("/stations", StationController.index);
 

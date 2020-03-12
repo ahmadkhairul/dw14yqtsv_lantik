@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 
+import { Redirect } from "react-router-dom";
 import { getOrders } from "../_actions/order";
 
 import Header from "../components/header";
@@ -9,9 +10,9 @@ import Detail from "../components/detailTransaction";
 import Edit from "../components/editTransaction";
 import Destroy from "../components/deleteTransaction";
 
-const App = ({ order, getOrders }) => {
+const App = ({ auth, order, getOrders }) => {
   const { data: dataOrder, loading: loadOrder, error: errorOrder } = order;
-
+  const { isLogin } = auth;
   useEffect(() => {
     getOrders();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -19,6 +20,8 @@ const App = ({ order, getOrders }) => {
   if (errorOrder) return <h2>AN UNKNOWN ERROR OCCURED</h2>;
 
   if (loadOrder) return <h2>NOW LOADING</h2>;
+
+  if (isLogin == false) return <Redirect to="/" />;
 
   return (
     <Container fluid>
@@ -63,7 +66,8 @@ const App = ({ order, getOrders }) => {
 // export default App;
 function mapStateToProps(state) {
   return {
-    order: state.order
+    order: state.order,
+    auth: state.auth
   };
 }
 

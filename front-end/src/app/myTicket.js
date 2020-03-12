@@ -2,19 +2,23 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import Moment from "react-moment";
+import { Redirect, Link } from "react-router-dom";
 
 import Header from "../components/header";
 import { getOrdersByUser } from "../_actions/order";
 import { updateOrderId } from "../_actions/setdata";
 
-const App = ({ order, getOrdersByUser, updateOrderId }) => {
+const App = ({ auth, order, getOrdersByUser, updateOrderId }) => {
   const { dataByUser, loading } = order;
+  const { isLogin } = auth;
 
   useEffect(() => {
     getOrdersByUser();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <>NOW LOADING</>;
+
+  if (isLogin == false) return <Redirect to="/" />;
 
   return (
     <Container fluid>
@@ -106,9 +110,11 @@ const App = ({ order, getOrdersByUser, updateOrderId }) => {
           {detail.status === "Approved" ? (
             <img className="barcode" src="./barcode.png" alt="" />
           ) : (
-            <button onClick={() => updateOrderId(detail.id)}>
-              Bayar Sekarang
-            </button>
+            <Link to="myinvoice">
+              <button onClick={() => updateOrderId(detail.id)}>
+                Bayar Sekarang
+              </button>
+            </Link>
           )}
         </div>
       ))}
@@ -118,7 +124,8 @@ const App = ({ order, getOrdersByUser, updateOrderId }) => {
 
 function mapStateToProps(state) {
   return {
-    order: state.order
+    order: state.order,
+    auth: state.auth
   };
 }
 

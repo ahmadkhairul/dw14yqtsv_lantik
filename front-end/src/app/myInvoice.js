@@ -1,22 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import Moment from "react-moment";
 import { toRupiah } from "indo-formatter";
+import { Redirect, Link } from "react-router-dom";
+import { Form } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
+import { BASE_URL } from "../config/constants";
 import Header from "../components/header";
-import { getOrderById } from "../_actions/order";
+import { getOrderById, updateProofOrder } from "../_actions/order";
 
-const App = ({ setdata, order, getOrderById }) => {
+const App = ({ setdata, order, getOrderById, updateProofOrder }) => {
   const { dataById, loading } = order;
+  const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const id = setdata.orderid;
 
   useEffect(() => {
-    getOrderById(setdata.orderid);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (id !== 0) {
+      getOrderById(id);
+    }
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const history = useHistory();
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    updateProofOrder(file, id);
+    history.push("/myticket");
+  };
 
   if (loading) return <>NOW LOADING</>;
 
-  //  console.log(dataById?.user?.name);
+  if (setdata.orderid === 0) return <Redirect to="myticket" />;
 
   return (
     <Container fluid>
@@ -76,9 +94,37 @@ const App = ({ setdata, order, getOrderById }) => {
               </tr>
             </tbody>
           </table>
-          <button>Bayar Sekarang</button>
-          <img src="./rekening.jpg" alt="" />
-          <label>upload payment proof</label>
+          <Form onSubmit={handleSubmit}>
+            <Form.Control
+              type="file"
+              id="uprekening"
+              onChange={e => {
+                setFile(e.target.files[0]);
+                setPreview(URL.createObjectURL(e.target.files[0]));
+              }}
+            />
+            {preview !== null ? (
+              <img src={preview} alt="" />
+            ) : dataById?.transferProof == "default.jpg" ? (
+              <img src="./default.jpg" alt="" />
+            ) : (
+              <img src={BASE_URL + dataById?.transferProof} />
+            )}
+
+            {dataById?.transferProof == "default.jpg" ? (
+              <label htmlFor="uprekening">upload payment proof</label>
+            ) : (
+              <label>upload payment proof</label>
+            )}
+
+            {preview !== null ? (
+              <button type="submit">Bayar Sekarang</button>
+            ) : (
+              <button type="submit" disabled>
+                Bayar Sekarang
+              </button>
+            )}
+          </Form>
         </div>
         <div className="box4">
           <div className="box">
@@ -160,7 +206,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getOrderById: value => dispatch(getOrderById(value))
+    getOrderById: value => dispatch(getOrderById(value)),
+    updateProofOrder: (file, id) => dispatch(updateProofOrder(file, id))
   };
 }
 

@@ -1,8 +1,10 @@
 const models = require("../models");
+const { Op } = require("sequelize");
 const Orders = models.order;
 const Users = models.user;
 const Tickets = models.ticket;
 const Station = models.station;
+const Upload = require("../middleware/upload");
 
 exports.index = async (req, res) => {
   try {
@@ -56,7 +58,12 @@ exports.show = async (req, res) => {
   try {
     const userId = req.user;
     const data = await Orders.findAll({
-      where: { userId },
+      where: {
+        userId,
+        status: {
+          [Op.not]: "Cancel"
+        }
+      },
       include: [
         {
           model: Users,
@@ -210,6 +217,39 @@ exports.save = async (req, res) => {
       data: { userId, ticketId, totalQty }
     });
   } catch (err) {
+    res.status(404).send({ status: false });
+  }
+};
+
+exports.updateProof = (req, res) => {
+  try {
+    const { id } = req.params;
+    const upload = Upload.single("image");
+
+    upload(req, res, async err => {
+      if (err || !req.file) {
+        throw new err();
+      }
+
+      const filename = req.file.filename;
+      await Orders.update(
+        {
+          transferProof: filename
+        },
+        { where: { id } }
+      );
+
+      const order = await Orders.findOne({
+        where: { id }
+      });
+
+      res.status(200).send({
+        status: true,
+        message: "success",
+        data: { order }
+      });
+    });
+  } catch (error) {
     res.status(404).send({ status: false });
   }
 };

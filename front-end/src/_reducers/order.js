@@ -4,6 +4,7 @@ import {
   GET_ORDERS,
   DELETE_ORDER,
   UPDATE_ORDER,
+  UPDATE_ORDER_PROOF,
   SAVE_ORDER
 } from "../config/constants";
 
@@ -22,6 +23,7 @@ const reducer = (state = initialState, action) => {
     case `${GET_ORDERS}_PENDING`:
     case `${DELETE_ORDER}_PENDING`:
     case `${UPDATE_ORDER}_PENDING`:
+    case `${UPDATE_ORDER_PROOF}_PENDING`:
     case `${SAVE_ORDER}_PENDING`:
       return {
         ...state,
@@ -41,6 +43,7 @@ const reducer = (state = initialState, action) => {
     case `${GET_ORDERS}_REJECTED`:
     case `${DELETE_ORDER}_REJECTED`:
     case `${UPDATE_ORDER}_REJECTED`:
+    case `${UPDATE_ORDER_PROOF}_REJECTED`:
     case `${SAVE_ORDER}_REJECTED`:
       return {
         ...state,
@@ -57,6 +60,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         dataByUser: action.payload,
+        loading: false
+      };
+    case `${UPDATE_ORDER_PROOF}_FULFILLED`:
+      return {
+        ...state,
+        dataById: [],
         loading: false
       };
     default:

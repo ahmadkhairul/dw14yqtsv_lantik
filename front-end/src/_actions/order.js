@@ -4,6 +4,7 @@ import {
   GET_ORDERS,
   DELETE_ORDER,
   UPDATE_ORDER,
+  UPDATE_ORDER_PROOF,
   SAVE_ORDER
 } from "../config/constants";
 import { API, setToken } from "../config/api";
@@ -68,6 +69,22 @@ export const updateOrder = value => {
         status: dataStatus
       });
       const res = await API.get("/orders");
+      const { data } = res.data;
+      return data;
+    }
+  };
+};
+
+export const updateProofOrder = (file, id) => {
+  const formData = new FormData();
+  formData.append("image", file);
+  return {
+    type: UPDATE_ORDER_PROOF,
+    payload: async () => {
+      setToken();
+      const res = await API.post("/order/proof/" + id, formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
       const { data } = res.data;
       return data;
     }

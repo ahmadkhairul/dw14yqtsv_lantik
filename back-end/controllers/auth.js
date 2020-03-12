@@ -6,12 +6,17 @@ const User = models.user;
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await User.findOne({ where: { username } });
+    const user = await User.findOne({
+      where: { username }
+    });
     if (user) {
       const result = await bcrypt.compare(password, user.password);
       if (result) {
         const token = jwt.sign({ user_id: user.id }, process.env.SECRET_KEY);
-        res.status(200).send({ status: true, data: { username, token } });
+        const { name, username, level } = user;
+        res
+          .status(200)
+          .send({ status: true, data: { name, username, level, token } });
       } else {
         res.status(401).send({ status: false, data: {} });
       }
@@ -25,7 +30,7 @@ exports.login = async (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const password = await bcrypt.hashSync(req.body.password, 10);
+    const password = bcrypt.hashSync(req.body.password, 10);
     const { name, username, email, gender, phone, address } = req.body;
     const level = "user";
 
@@ -51,7 +56,7 @@ exports.register = async (req, res) => {
         res.status(200).send({
           status: true,
           message: "success",
-          data: { username, token }
+          data: { username, name, level, token }
         });
       } else {
         res.status(401).send({ status: false, data: {} });

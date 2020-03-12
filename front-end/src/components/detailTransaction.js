@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Modal, Row, Col } from "react-bootstrap";
 import Moment from "react-moment";
 import { toRupiah } from "indo-formatter";
+import { BASE_URL } from "../config/constants";
 
 const App = ({ detail }) => {
   const [lgShow, setLgShow] = useState(false);
@@ -30,7 +31,7 @@ const App = ({ detail }) => {
               </h3>
               <h4>{detail.ticket.name}</h4>
               <h5>{detail.ticket.classType}</h5>
-              <img className="img-3" src="./barcode.png" alt="" />
+              {/* <img className="img-3" src="./barcode.png" alt="" /> */}
             </Col>
             <Col sm={6}>
               <table className="tbl-1">
@@ -82,7 +83,16 @@ const App = ({ detail }) => {
               </table>
             </Col>
             <Col sm={3}>
-              <img className="img-2" src="./rekening.jpg" alt="" />
+              {detail.transferProof !== "default.jpg" ? (
+                <img
+                  className="img-2"
+                  src={BASE_URL + detail.transferProof}
+                  alt=""
+                />
+              ) : (
+                <img className="img-2" src="./default.jpg" alt="" />
+              )}
+
               <label>upload payment proof</label>
             </Col>
           </Row>

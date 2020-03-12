@@ -8,6 +8,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 app.use("/api/v1", routes);
+app.use(express.static("public"));
 app.listen(port, () => {
   console.log("Server ON");
 });

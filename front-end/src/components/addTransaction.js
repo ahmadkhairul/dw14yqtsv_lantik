@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { postOrder } from "../_actions/order";
+import { Link } from "react-router-dom";
 
 const App = ({ setdata, data, postOrder }) => {
   const [lgShow, setLgShow] = useState(false);
@@ -19,12 +20,14 @@ const App = ({ setdata, data, postOrder }) => {
         </Modal.Header>
         <Modal.Body>BELI TIKET INI ?</Modal.Body>
         <Modal.Footer>
-          <Button
-            className="btn-modal"
-            onClick={() => postOrder({ id, price, quantity })}
-          >
-            YES
-          </Button>
+          <Link to="myticket">
+            <Button
+              className="btn-modal"
+              onClick={() => postOrder({ id, price, quantity })}
+            >
+              YES
+            </Button>
+          </Link>
         </Modal.Footer>
       </Modal>
     </Fragment>

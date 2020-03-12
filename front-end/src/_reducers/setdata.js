@@ -2,7 +2,7 @@ import { SET_ORDER_ID, SET_QUANTITY } from "../config/constants";
 
 const initialState = {
   quantity: 1,
-  orderid: 1,
+  orderid: 0,
   loading: false,
   error: false
 };

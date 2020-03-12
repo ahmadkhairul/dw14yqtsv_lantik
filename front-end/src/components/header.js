@@ -3,18 +3,17 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Register from "../components/register";
 import Login from "../components/login";
-import { delUser } from "../_actions/user";
+import { delUser } from "../_actions/auth";
 
-const App = ({ user, delUser }) => {
-  const { data, error } = user;
+const App = ({ auth, delUser }) => {
+  const { data, isLogin } = auth;
 
   const handleLogout = async () => {
     localStorage.removeItem("token");
     await delUser();
-    // window.location.reload();
   };
 
-  if (error) {
+  if (isLogin === false) {
     return (
       <div className="menu">
         <label className="brand">Land Tick</label>
@@ -28,43 +27,44 @@ const App = ({ user, delUser }) => {
     );
   }
 
-  if (data) {
-    return (
-      <div className="menu">
-        <label>Land Tick</label>
-        <div className="dropdown">
-          {data.name} &nbsp;
-          <img src="./profile.png" alt="avatar" />
-          {data.level === "User" ? (
-            <div className="dropdown-content">
-              <p>
-                <Link to="myticket">Ticket Saya</Link>
-              </p>
-              <p>
-                <Link to="myinvoice">Payment</Link>
-              </p>
-              <hr />
+  return (
+    <div className="menu">
+      <label>Land Tick</label>
+      <div className="dropdown">
+        {data.name} &nbsp;
+        <img src="./profile.png" alt="avatar" />
+        {data.level === "User" ? (
+          <div className="dropdown-content">
+            <p>
+              <Link to="myticket">Ticket Saya</Link>
+            </p>
+            <hr />
+            <Link to="/">
               <p onClick={handleLogout}>Logout</p>
-            </div>
-          ) : (
-            <div className="dropdown-content">
-              <p>
-                <Link to="transactionlist">List Transaksi</Link>
-              </p>
-              <p>Ticket</p>
-              <hr />
+            </Link>
+          </div>
+        ) : (
+          <div className="dropdown-content">
+            <p>
+              <Link to="transactionlist">List Transaksi</Link>
+            </p>
+            <p>
+              <Link to="addticket">Ticket</Link>
+            </p>
+            <hr />
+            <Link to="/">
               <p onClick={handleLogout}>Logout</p>
-            </div>
-          )}
-        </div>
+            </Link>
+          </div>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    auth: state.auth
   };
 }
 

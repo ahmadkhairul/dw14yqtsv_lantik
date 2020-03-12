@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Moment from "react-moment";
 import moment from "moment";
 import { connect } from "react-redux";
@@ -9,7 +9,6 @@ import Header from "../components/header";
 import SearchTicket from "../components/searchTicket";
 import AddTransaction from "../components/addTransaction";
 import FailTransaction from "../components/failTransaction";
-import { getStation } from "../_actions/station";
 
 const getDuration = (timeA, timeB) => {
   var startTime = moment(timeA, "YYYY-MM-DD HH:mm:ss");
@@ -21,12 +20,8 @@ const getDuration = (timeA, timeB) => {
   return `${hours}J ${minutes}m`;
 };
 
-const App = ({ ticket, getStation }) => {
+const App = ({ ticket }) => {
   const { data: dataTicket, loading: loadTicket, error: errorTicket } = ticket;
-
-  useEffect(() => {
-    getStation();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const token = localStorage.getItem("token");
 
@@ -102,10 +97,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getStation: () => dispatch(getStation())
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

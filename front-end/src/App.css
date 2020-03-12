@@ -647,11 +647,20 @@
 
 .myinvoice .box3 label {
   position: absolute;
-  left: 645px;
+  left: 636px;
   top: 745px;
 
   font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   color: #818181;
+
+  border: 1px solid rgba(154, 154, 154, 0.23);
+  box-sizing: border-box;
+  border-radius: 25px;
+  padding: 10px 10px 10px 10px;
+}
+
+.myinvoice input[type="file"] {
+  display: none;
 }
 
 .myinvoice .box4 .box {
@@ -907,7 +916,7 @@
   position: relative;
   width: 200px;
   height: 200px;
-  right: 75px;
+  right: 55px;
 
   background: rgba(154, 154, 154, 0.23);
   border: 3px solid #000000;
@@ -938,4 +947,16 @@
 .modal-2 {
   font: 16px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   color: #1725df;
+}
+
+.addticket {
+  position: absolute;
+  min-width: 800px;
+  min-height: 850px;
+  left: 260px;
+  top: 180px;
+}
+
+.addticket form {
+  font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }

@@ -1,24 +1,21 @@
 import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import moment from "moment";
 
 import { connect } from "react-redux";
-import { getUser } from "./_actions/user";
+import { authUser } from "./_actions/auth";
 import { searchTicket } from "./_actions/ticket";
+import { getStation } from "./_actions/station";
 
 import Index from "./app/index";
 import MyTicket from "./app/myTicket";
 import MyInvoice from "./app/myInvoice";
 import TransactionList from "./app/transactionList";
+import AddTicket from "./app/addTicket";
 
 import "./App.css";
 
-const App = ({ user, ticket, getUser, searchTicket }) => {
+const App = ({ auth, ticket, authUser, searchTicket, getStation }) => {
   const value = {
     destination: "",
     start: "",
@@ -27,14 +24,15 @@ const App = ({ user, ticket, getUser, searchTicket }) => {
   };
 
   useEffect(() => {
-    getUser();
+    authUser();
+    getStation();
     searchTicket(value);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const { loading: loadUser, data: dataUser } = user;
+  const { loading: loadAuth } = auth;
   const { loading: loadTicket, error: errorTicket } = ticket;
 
-  const loading = loadUser || loadTicket;
+  const loading = loadAuth || loadTicket;
   if (loading) return <h2>NOW LOADING</h2>;
 
   if (errorTicket) return <h2>ERROR OCCURED</h2>;
@@ -44,13 +42,16 @@ const App = ({ user, ticket, getUser, searchTicket }) => {
       <div>
         <Switch>
           <Route path="/myinvoice">
-            {dataUser != null ? <MyInvoice /> : <Redirect to="/" />}
+            <MyInvoice />
           </Route>
           <Route path="/myticket">
-            {dataUser != null ? <MyTicket /> : <Redirect to="/" />}
+            <MyTicket />
           </Route>
           <Route path="/transactionlist">
-            {dataUser != null ? <TransactionList /> : <Redirect to="/" />}
+            <TransactionList />
+          </Route>
+          <Route path="/addticket">
+            <AddTicket />
           </Route>
           <Route path="/">
             <Index />
@@ -63,15 +64,16 @@ const App = ({ user, ticket, getUser, searchTicket }) => {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    auth: state.auth,
     ticket: state.ticket
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUser: () => dispatch(getUser()),
-    searchTicket: value => dispatch(searchTicket(value))
+    authUser: () => dispatch(authUser()),
+    searchTicket: value => dispatch(searchTicket(value)),
+    getStation: () => dispatch(getStation())
   };
 }
 

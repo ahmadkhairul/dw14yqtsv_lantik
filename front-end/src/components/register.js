@@ -46,8 +46,17 @@ const App = ({ register, postRegister }) => {
       address,
       phone
     });
-    // window.location.reload();
   };
+
+  const errMessage = "";
+
+  if (error === true) {
+    const errMessage = "<h6>Username or Password Wrong</h6>";
+  }
+
+  if (loading === true) {
+    const errMessage = "<h6>Now Loading</h6>";
+  }
 
   return (
     <Fragment>
@@ -64,8 +73,7 @@ const App = ({ register, postRegister }) => {
           <Modal.Title>REGISTER</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {error === true ? <h6>Email Already Taken</h6> : <></>}
-          {loading === true ? <h6>Now Loading</h6> : <></>}
+          {errMessage}
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Control

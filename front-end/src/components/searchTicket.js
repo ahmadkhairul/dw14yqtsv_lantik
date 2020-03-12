@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Table, Row, Col, Nav, Tab, Form } from "react-bootstrap";
+import moment from "moment";
 import { connect } from "react-redux";
+
 import { searchTicket } from "../_actions/ticket";
 import { updateQuantity } from "../_actions/setdata";
-import moment from "moment";
 
 const App = ({ station, searchTicket, updateQuantity }) => {
   const [destination, setDestination] = useState("");
   const [start, setStart] = useState("");
-  const [baby, setBaby] = useState(1);
   const [adult, setAdult] = useState(1);
   const [dateStart, setDateStart] = useState(moment().format("YYYY-MM-DD"));
 
@@ -60,7 +60,7 @@ const App = ({ station, searchTicket, updateQuantity }) => {
                     <Table>
                       <tbody>
                         <tr>
-                          <td colSpan="2">
+                          <td>
                             <Form.Label>Asal</Form.Label>
                             <Form.Control
                               as="select"
@@ -94,13 +94,6 @@ const App = ({ station, searchTicket, updateQuantity }) => {
                               onChange={event => {
                                 setDateStart(event.target.value);
                               }}
-                            />
-                          </td>
-                          <td>
-                            <Form.Check
-                              type="checkbox"
-                              name="roundTrip"
-                              label="Pulang Pergi"
                             />
                           </td>
                         </tr>
@@ -141,7 +134,7 @@ const App = ({ station, searchTicket, updateQuantity }) => {
                         </tr>
                         <tr>
                           <td>
-                            <Form.Label>Dewasa</Form.Label>
+                            <Form.Label>Jumlah Tiket</Form.Label>
                             <Form.Control
                               as="select"
                               name="adult"
@@ -157,23 +150,7 @@ const App = ({ station, searchTicket, updateQuantity }) => {
                               <option value="4">4</option>
                             </Form.Control>
                           </td>
-                          <td>
-                            <Form.Label>Bayi</Form.Label>
-                            <Form.Control
-                              as="select"
-                              name="baby"
-                              value={baby}
-                              onChange={event => {
-                                setBaby(event.target.value);
-                              }}
-                            >
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                            </Form.Control>
-                          </td>
-                          <td>
+                          <td colSpan="2">
                             <button type="submit">Cari</button>
                           </td>
                         </tr>

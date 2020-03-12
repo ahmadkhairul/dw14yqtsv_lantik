@@ -1,5 +1,10 @@
-import { AUTH_LOGIN, AUTH_REGISTER } from "../config/constants";
-import { API } from "../config/api";
+import {
+  AUTH_LOGIN,
+  AUTH_REGISTER,
+  AUTH_USER,
+  AUTH_LOGOUT
+} from "../config/constants";
+import { API, setToken } from "../config/api";
 
 export const postLogin = value => {
   const { username, password } = value;
@@ -47,5 +52,24 @@ export const postRegister = value => {
       }
       return data;
     }
+  };
+};
+
+export const authUser = () => {
+  return {
+    type: AUTH_USER,
+    payload: async () => {
+      setToken();
+      const res = await API.get("/auth");
+      const { data } = res.data;
+      return data;
+    }
+  };
+};
+
+export const delUser = () => {
+  return {
+    type: AUTH_LOGOUT,
+    payload: null
   };
 };
