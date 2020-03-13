@@ -13,7 +13,7 @@ const App = ({ register, postRegister }) => {
       username: "",
       password: "",
       email: "",
-      gender: "",
+      gender: "Male",
       address: "",
       phone: ""
     }

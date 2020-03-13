@@ -12,6 +12,8 @@ export const SAVE_TICKET = "SAVE_TICKET";
 export const GET_ORDERS = "GET_ORDERS";
 export const GET_ORDER_BY_ID = "GET_ORDER_BY_ID";
 export const GET_ORDERS_BY_USER = "GET_ORDERS_BY_USER";
+export const GET_ORDERS_SORT = "GET_ORDERS_SORT";
+
 export const DELETE_ORDER = "DELETE_ORDER";
 export const UPDATE_ORDER = "UPDATE_ORDER";
 export const UPDATE_ORDER_PROOF = "UPDATE_ORDER_PROOF";
@@ -24,4 +26,5 @@ export const GET_STATION = "GET_STATION";
 export const SET_QUANTITY = "SET_QUANTITY";
 export const SET_ORDER_ID = "SET_ORDER_ID";
 
+//BASE_URL
 export const BASE_URL = "http://localhost:8000/";

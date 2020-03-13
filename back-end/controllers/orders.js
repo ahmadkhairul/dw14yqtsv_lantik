@@ -64,6 +64,7 @@ exports.show = async (req, res) => {
           [Op.not]: "Cancel"
         }
       },
+      order: [["id", "DESC"]],
       include: [
         {
           model: Users,
@@ -250,6 +251,62 @@ exports.updateProof = (req, res) => {
       });
     });
   } catch (error) {
+    res.status(404).send({ status: false });
+  }
+};
+
+exports.sort = async (req, res) => {
+  try {
+    if (req.level == "Admin") {
+      req.body.status == "All" ? (status = "%%") : (status = req.body.status);
+      console.log(status);
+      const data = await Orders.findAll({
+        where: {
+          status: {
+            [Op.like]: status
+          }
+        },
+        include: [
+          {
+            model: Users,
+            as: "user",
+            attributes: ["name", "email", "phone"]
+          },
+          {
+            model: Tickets,
+            as: "ticket",
+            attributes: [
+              "name",
+              "price",
+              "dateStart",
+              "classType",
+              "startTime",
+              "arrivalTime"
+            ],
+            include: [
+              {
+                model: Station,
+                as: "start",
+                attributes: ["code", "name", "city"]
+              },
+              {
+                model: Station,
+                as: "destination",
+                attributes: ["code", "name", "city"]
+              }
+            ]
+          }
+        ],
+        order: [["id", "ASC"]],
+        attributes: {
+          exclude: ["userId", "ticketId", "createdAt", "updatedAt"]
+        }
+      });
+      res.status(200).send({ status: true, message: "success", data });
+    } else {
+      res.status(401).send({ status: false });
+    }
+  } catch (err) {
     res.status(404).send({ status: false });
   }
 };

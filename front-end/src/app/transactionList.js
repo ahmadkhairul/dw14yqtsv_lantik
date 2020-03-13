@@ -1,20 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
-import { getOrders } from "../_actions/order";
+import { getOrders, getSortOrder } from "../_actions/order";
 
 import Header from "../components/header";
 import Detail from "../components/detailTransaction";
 import Edit from "../components/editTransaction";
 import Destroy from "../components/deleteTransaction";
 
-const App = ({ auth, order, getOrders }) => {
+const App = ({ auth, order, getOrders, getSortOrder }) => {
   const { data: dataOrder, loading: loadOrder, error: errorOrder } = order;
+  const [dataStatus, setDataStatus] = useState("Approved");
+
   const { isLogin } = auth;
   useEffect(() => {
-    getOrders();
+    getOrders(dataStatus);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (errorOrder) return <h2>AN UNKNOWN ERROR OCCURED</h2>;
@@ -23,11 +25,24 @@ const App = ({ auth, order, getOrders }) => {
 
   if (isLogin == false) return <Redirect to="/" />;
 
+  const handleChange = evt => {
+    const value = evt.target.value;
+    setDataStatus(value);
+    getSortOrder(value);
+  };
+
   return (
     <Container fluid>
       <Header />
       <h1 className="title">List Transaksi</h1>
       <div className="transaction">
+        <label>Status</label>
+        <select name="dataStatus" value={dataStatus} onChange={handleChange}>
+          <option value="All">All</option>
+          <option value="Approved">Approved</option>
+          <option value="Pending">Pending</option>
+          <option value="Cancel">Cancel</option>
+        </select>
         <table>
           <thead>
             <tr>
@@ -73,7 +88,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getOrders: () => dispatch(getOrders())
+    getOrders: () => dispatch(getOrders()),
+    getSortOrder: value => dispatch(getSortOrder(value))
   };
 }
 

@@ -46,6 +46,20 @@ export const getOrders = () => {
   };
 };
 
+export const getSortOrder = value => {
+  return {
+    type: GET_ORDERS,
+    payload: async () => {
+      setToken();
+      const res = await API.post("/order/sort", {
+        status: value
+      });
+      const { data } = res.data;
+      return data;
+    }
+  };
+};
+
 export const deleteOrder = id => {
   return {
     type: DELETE_ORDER,

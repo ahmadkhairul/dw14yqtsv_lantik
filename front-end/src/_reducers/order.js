@@ -2,6 +2,7 @@ import {
   GET_ORDER_BY_ID,
   GET_ORDERS_BY_USER,
   GET_ORDERS,
+  GET_ORDERS_SORT,
   DELETE_ORDER,
   UPDATE_ORDER,
   UPDATE_ORDER_PROOF,
@@ -25,11 +26,13 @@ const reducer = (state = initialState, action) => {
     case `${UPDATE_ORDER}_PENDING`:
     case `${UPDATE_ORDER_PROOF}_PENDING`:
     case `${SAVE_ORDER}_PENDING`:
+    case `${GET_ORDERS_SORT}_PENDING`:
       return {
         ...state,
         loading: true
       };
     case `${GET_ORDERS}_FULFILLED`:
+    case `${GET_ORDERS_SORT}_FULFILLED`:
     case `${DELETE_ORDER}_FULFILLED`:
     case `${UPDATE_ORDER}_FULFILLED`:
     case `${SAVE_ORDER}_FULFILLED`:
@@ -41,6 +44,7 @@ const reducer = (state = initialState, action) => {
     case `${GET_ORDER_BY_ID}_REJECTED`:
     case `${GET_ORDERS_BY_USER}_REJECTED`:
     case `${GET_ORDERS}_REJECTED`:
+    case `${GET_ORDERS_SORT}_REJECTED`:
     case `${DELETE_ORDER}_REJECTED`:
     case `${UPDATE_ORDER}_REJECTED`:
     case `${UPDATE_ORDER_PROOF}_REJECTED`:

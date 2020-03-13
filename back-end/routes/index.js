@@ -25,6 +25,7 @@ router.post("/ticket", auth, TicketController.save);
 router.get("/orders", auth, OrderController.index);
 router.get("/order", auth, OrderController.show);
 router.get("/order/:id", auth, OrderController.showId);
+router.post("/order/sort", auth, OrderController.sort);
 
 router.put("/order/:id", auth, OrderController.update);
 router.delete("/order/:id", auth, OrderController.destroy);
