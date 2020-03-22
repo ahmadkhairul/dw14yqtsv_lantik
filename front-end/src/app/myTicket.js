@@ -7,6 +7,7 @@ import { Redirect, Link } from "react-router-dom";
 import Header from "../components/header";
 import { getOrdersByUser } from "../_actions/order";
 import { updateOrderId } from "../_actions/setdata";
+import ETicket from "../components/eTicket";
 
 const App = ({ auth, order, getOrdersByUser, updateOrderId }) => {
   const { dataByUser, loading } = order;
@@ -108,7 +109,10 @@ const App = ({ auth, order, getOrdersByUser, updateOrderId }) => {
           </table>
           <hr />
           {detail.status === "Approved" ? (
-            <img className="barcode" src="./barcode.png" alt="" />
+            <>
+              <img className="barcode" src="./barcode.png" alt="" />
+              <ETicket detail={detail} />
+            </>
           ) : (
             <Link to="myinvoice">
               <button onClick={() => updateOrderId(detail.id)}>

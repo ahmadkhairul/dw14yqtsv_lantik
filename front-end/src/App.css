@@ -897,12 +897,12 @@
 
 .detailTransaction .tbl-3 {
   position: relative;
-  border-top: 3px solid black;
-  border-bottom: 3px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .detailTransaction .tbl-3 th {
-  padding-top: 40px;
+  padding-top: 15px;
 }
 .detailTransaction .tbl-1 th,
 .detailTransaction .tbl-2 th {
@@ -977,4 +977,12 @@
 
 .addticket form {
   font: 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.eTicket {
+  position: relative;
+  top: 160px;
+  right: 90px;
+  width: 30px;
+  height: 30px;
 }
