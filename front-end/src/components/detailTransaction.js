@@ -92,7 +92,6 @@ const App = ({ detail }) => {
               ) : (
                 <img className="img-2" src="./default.jpg" alt="" />
               )}
-
               <label>upload payment proof</label>
             </Col>
           </Row>
